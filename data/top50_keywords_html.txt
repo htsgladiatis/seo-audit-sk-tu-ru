@@ -1,0 +1,50 @@
+              <tr><td class="td-rank">#1</td><td><strong>каркасные дома</strong></td><td class="td-pos-good">28 952</td></tr>
+              <tr><td class="td-rank">#2</td><td><strong>каркасные дома под ключ</strong></td><td class="td-pos-good">25 740</td></tr>
+              <tr><td class="td-rank">#3</td><td><strong>строительство каркасных домов под ключ</strong></td><td class="td-pos-good">15 936</td></tr>
+              <tr><td class="td-rank">#4</td><td><strong>каркасный дом под ключ цена</strong></td><td class="td-pos-good">15 625</td></tr>
+              <tr><td class="td-rank">#5</td><td><strong>купить каркасный дом</strong></td><td class="td-pos-good">14 310</td></tr>
+              <tr><td class="td-rank">#6</td><td><strong>каркасный дом цена</strong></td><td class="td-pos-good">13 926</td></tr>
+              <tr><td class="td-rank">#7</td><td><strong>строительство каркасных домов</strong></td><td class="td-pos-good">13 426</td></tr>
+              <tr><td class="td-rank">#8</td><td><strong>каркасный дом под ключ</strong></td><td class="td-pos-good">13 330</td></tr>
+              <tr><td class="td-rank">#9</td><td><strong>купить каркасный дом под ключ</strong></td><td class="td-pos-good">12 898</td></tr>
+              <tr><td class="td-rank">#10</td><td><strong>каркасный дом под ключ москва</strong></td><td class="td-pos-good">12 614</td></tr>
+              <tr><td class="td-rank">#11</td><td><strong>стоимость каркасного дома</strong></td><td class="td-pos-good">11 468</td></tr>
+              <tr><td class="td-rank">#12</td><td><strong>каркасные дома недорого</strong></td><td class="td-pos-good">11 072</td></tr>
+              <tr><td class="td-rank">#13</td><td><strong>каркасные дома под ключ недорого</strong></td><td class="td-pos-good">10 959</td></tr>
+              <tr><td class="td-rank">#14</td><td><strong>строительство каркасных домов ключ в москве</strong></td><td class="td-pos-good">10 042</td></tr>
+              <tr><td class="td-rank">#15</td><td><strong>каркасный дом под ключ недорого</strong></td><td class="td-pos-good">9 889</td></tr>
+              <tr><td class="td-rank">#16</td><td><strong>строительство каркасных домов под ключ москва</strong></td><td class="td-pos-good">9 843</td></tr>
+              <tr><td class="td-rank">#17</td><td><strong>каркасные дома москва</strong></td><td class="td-pos-good">9 599</td></tr>
+              <tr><td class="td-rank">#18</td><td><strong>каркасные дома под ключ в спб</strong></td><td class="td-pos-good">7 046</td></tr>
+              <tr><td class="td-rank">#19</td><td><strong>каркасный дом</strong></td><td class="td-pos-good">6 770</td></tr>
+              <tr><td class="td-rank">#20</td><td><strong>проекты каркасных домов</strong></td><td class="td-pos-good">5 592</td></tr>
+              <tr><td class="td-rank">#21</td><td><strong>строительство каркасных домов в спб</strong></td><td class="td-pos-good">4 868</td></tr>
+              <tr><td class="td-rank">#22</td><td><strong>каркасные дома теплый угол</strong></td><td class="td-pos-good">4 704</td></tr>
+              <tr><td class="td-rank">#23</td><td><strong>каркасные дома под ключ теплый угол</strong></td><td class="td-pos-good">4 619</td></tr>
+              <tr><td class="td-rank">#24</td><td><strong>одноэтажные каркасные дома под ключ</strong></td><td class="td-pos-good">4 267</td></tr>
+              <tr><td class="td-rank">#25</td><td><strong>каркасные дома спб</strong></td><td class="td-pos-good">4 139</td></tr>
+              <tr><td class="td-rank">#26</td><td><strong>строительство каркасных домов теплый угол</strong></td><td class="td-pos-good">3 558</td></tr>
+              <tr><td class="td-rank">#27</td><td><strong>каркасный дом под ключ в спб</strong></td><td class="td-pos-good">3 556</td></tr>
+              <tr><td class="td-rank">#28</td><td><strong>каркасные дома в спб</strong></td><td class="td-pos-good">3 332</td></tr>
+              <tr><td class="td-rank">#29</td><td><strong>каркасные дома санкт петербург</strong></td><td class="td-pos-good">3 132</td></tr>
+              <tr><td class="td-rank">#30</td><td><strong>каркасный дом под ключ теплый угол</strong></td><td class="td-pos-good">3 001</td></tr>
+              <tr><td class="td-rank">#31</td><td><strong>одноэтажный каркасный дом</strong></td><td class="td-pos-good">2 858</td></tr>
+              <tr><td class="td-rank">#32</td><td><strong>каркасный дом под ключ цена в спб</strong></td><td class="td-pos-good">2 699</td></tr>
+              <tr><td class="td-rank">#33</td><td><strong>проекты одноэтажных каркасных домов</strong></td><td class="td-pos-good">2 446</td></tr>
+              <tr><td class="td-rank">#34</td><td><strong>купить каркасный дом теплый угол</strong></td><td class="td-pos-good">2 364</td></tr>
+              <tr><td class="td-rank">#35</td><td><strong>купить каркасный дом в спб</strong></td><td class="td-pos-good">2 069</td></tr>
+              <tr><td class="td-rank">#36</td><td><strong>проекты каркасных домов для круглогодичного проживания</strong></td><td class="td-pos-good">2 027</td></tr>
+              <tr><td class="td-rank">#37</td><td><strong>стоимость каркасного дома под ключ</strong></td><td class="td-pos-good">1 875</td></tr>
+              <tr><td class="td-rank">#38</td><td><strong>проектирование каркасных домов</strong></td><td class="td-pos-good">1 845</td></tr>
+              <tr><td class="td-rank">#39</td><td><strong>каркасные дома под ключ проекты и цены</strong></td><td class="td-pos-good">1 803</td></tr>
+              <tr><td class="td-rank">#40</td><td><strong>каркасный дом под ключ цена теплый угол</strong></td><td class="td-pos-good">1 759</td></tr>
+              <tr><td class="td-rank">#41</td><td><strong>одноэтажный каркасный дом под ключ</strong></td><td class="td-pos-good">1 624</td></tr>
+              <tr><td class="td-rank">#42</td><td><strong>двухэтажный каркасный дом</strong></td><td class="td-pos-good">1 623</td></tr>
+              <tr><td class="td-rank">#43</td><td><strong>строительство каркасных домов под ключ теплый угол</strong></td><td class="td-pos-good">1 508</td></tr>
+              <tr><td class="td-rank">#44</td><td><strong>стоимость строительства каркасного дома</strong></td><td class="td-pos-good">1 406</td></tr>
+              <tr><td class="td-rank">#45</td><td><strong>каркасный дом под ключ цена московская область</strong></td><td class="td-pos-good">1 402</td></tr>
+              <tr><td class="td-rank">#46</td><td><strong>каркасный дом теплый угол</strong></td><td class="td-pos-good">1 239</td></tr>
+              <tr><td class="td-rank">#47</td><td><strong>стоимость каркасного дома теплый угол</strong></td><td class="td-pos-good">1 103</td></tr>
+              <tr><td class="td-rank">#48</td><td><strong>купить каркасный дом под ключ в спб</strong></td><td class="td-pos-good">1 013</td></tr>
+              <tr><td class="td-rank">#49</td><td><strong>каркасный дом под ключ москва теплый угол</strong></td><td class="td-pos-good">958</td></tr>
+              <tr><td class="td-rank">#50</td><td><strong>каркасный дом цена теплый угол</strong></td><td class="td-pos-good">956</td></tr>

@@ -1,0 +1,23 @@
+{
+  "name": "seo-aeo-geo-visibility-architect",
+  "description": "Top-tier SEO, AEO, GEO and LLM Visibility Strategist. Build digital visibility systems for search engines, AI search and generative AI models simultaneously.",
+  "version": "1.0.0",
+  "author": {
+    "name": "SK Tepliy Ugol"
+  },
+  "license": "MIT",
+  "keywords": [
+    "seo",
+    "aeo",
+    "geo",
+    "llm-visibility",
+    "search-optimization",
+    "ai-search",
+    "entity-seo",
+    "knowledge-graph",
+    "visibility-architect"
+  ],
+  "skills": [
+    "./skills/visibility-architect"
+  ]
+}

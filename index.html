@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Audit Report — SK Tepliy Ugol</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        header {
+            text-align: center;
+            padding: 60px 0;
+            border-bottom: 1px solid #334155;
+            margin-bottom: 40px;
+        }
+        h1 { font-size: 2.5rem; color: #38bdf8; margin-bottom: 10px; }
+        .subtitle { color: #94a3b8; font-size: 1.1rem; }
+        .date { color: #64748b; margin-top: 10px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #334155;
+        }
+        .card h2 { color: #38bdf8; font-size: 1.3rem; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .metric { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #334155; }
+        .metric:last-child { border-bottom: none; }
+        .metric-label { color: #94a3b8; }
+        .metric-value { font-weight: 600; font-size: 1.1rem; }
+        .good { color: #22c55e; }
+        .warn { color: #f59e0b; }
+        .bad { color: #ef4444; }
+        
+        .critical {
+            background: #450a0a;
+            border: 1px solid #ef4444;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+        .critical h2 { color: #ef4444; margin-bottom: 16px; }
+        .critical ul { list-style: none; }
+        .critical li { padding: 8px 0; padding-left: 24px; position: relative; }
+        .critical li::before { content: "⚠"; position: absolute; left: 0; }
+        
+        .sites { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        @media (max-width: 600px) { .sites { grid-template-columns: 1fr; } }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .badge-green { background: #14532d; color: #22c55e; }
+        .badge-red { background: #450a0a; color: #ef4444; }
+        .badge-yellow { background: #451a03; color: #f59e0b; }
+        
+        footer { text-align: center; padding: 40px; color: #64748b; border-top: 1px solid #334155; margin-top: 40px; }
+        a { color: #38bdf8; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        .summary-box {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+        .summary-box .number { font-size: 3rem; font-weight: 700; color: #38bdf8; }
+        .summary-box .label { color: #94a3b8; margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 SEO Audit Report</h1>
+            <p class="subtitle">СК Теплый Угол — sk-tu.ru & msk.sk-tu.ru</p>
+            <p class="date">16 июня 2026</p>
+        </header>
+
+        <div class="grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="summary-box">
+                <div class="number">1,522</div>
+                <div class="label">Страниц проверено</div>
+            </div>
+            <div class="summary-box">
+                <div class="number" style="color: #ef4444;">79,300</div>
+                <div class="label">Изображений без alt</div>
+            </div>
+            <div class="summary-box">
+                <div class="number" style="color: #ef4444;">1,522</div>
+                <div class="label">Страниц без Schema.org</div>
+            </div>
+        </div>
+
+        <div class="critical">
+            <h2>🚨 Критические проблемы</h2>
+            <ul>
+                <li><strong>Schema.org отсутствует</strong> — 100% страниц (1,522) на обоих сайтах без структурированных данных. Это критично для rich snippets и AI-ответов.</li>
+                <li><strong>Alt-теги</strong> — ~79,300 изображений без описания. Проблема SEO + доступность.</li>
+                <li><strong>Дубли</strong> — index.php на обоих сайтах (должен быть 301 редирект на /).</li>
+                <li><strong>Description</strong> — 3 страницы без meta description на sk-tu.ru.</li>
+            </ul>
+        </div>
+
+        <div class="sites">
+            <div class="card">
+                <h2>🌐 sk-tu.ru <span style="font-size:0.8rem;color:#64748b">(Санкт-Петербург)</span></h2>
+                <div class="metric">
+                    <span class="metric-label">Страниц проверено</span>
+                    <span class="metric-value good">761</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">HTTP 200</span>
+                    <span class="metric-value good">761 (100%)</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Без Title</span>
+                    <span class="metric-value good">0 ✅</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Без Description</span>
+                    <span class="metric-value warn">3 ⚠️</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Без Schema.org</span>
+                    <span class="metric-value bad">761 ❌</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Без Canonical</span>
+                    <span class="metric-value good">0 ✅</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Изображений без alt</span>
+                    <span class="metric-value bad">39,650</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Дубли</span>
+                    <span class="metric-value warn">1 (index.php)</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">robots.txt CSS</span>
+                    <span class="metric-value good">Не блокирует ✅</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">robots.txt JS</span>
+                    <span class="metric-value good">Не блокирует ✅</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🌐 msk.sk-tu.ru <span style="font-size:0.8rem;color:#64748b">(Москва)</span></h2>
+                <div class="metric">
+                    <span class="metric-label">Страниц проверено</span>
+                    <span class="metric-value good">761</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">HTTP 200</span>
+                    <span class="metric-value good">761 (100%)</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Без Title</span>
+                    <span class="metric-value good">0 ✅</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Без Description</span>
+                    <span class="metric-value good">0 ✅</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Без Schema.org</span>
+                    <span class="metric-value bad">761 ❌</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Без Canonical</span>
+                    <span class="metric-value good">0 ✅</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Изображений без alt</span>
+                    <span class="metric-value bad">39,650</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Дубли</span>
+                    <span class="metric-value warn">1 (index.php)</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">robots.txt CSS</span>
+                    <span class="metric-value good">Не блокирует ✅</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">robots.txt JS</span>
+                    <span class="metric-value good">Не блокирует ✅</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📋 План действий (приоритет)</h2>
+            <div class="metric">
+                <span class="metric-label"><span class="badge badge-red">P0</span> Добавить Schema.org</span>
+                <span class="metric-value">Organization, Service, Product, FAQ</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label"><span class="badge badge-red">P0</span> Alt-теги</span>
+                <span class="metric-value">~79,300 изображений</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label"><span class="badge badge-yellow">P1</span> Редирект index.php</span>
+                <span class="metric-value">301 → /</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label"><span class="badge badge-yellow">P1</span> Description</span>
+                <span class="metric-value">3 страницы на sk-tu.ru</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label"><span class="badge badge-green">P2</span> GSC данные</span>
+                <span class="metric-value">Собрать через API</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📁 Артефакты аудита</h2>
+            <div class="metric">
+                <span class="metric-label">Полный аудит sk-tu.ru</span>
+                <span class="metric-value"><a href="data/seo_audit_sk-tu_ru.json">seo_audit_sk-tu_ru.json</a></span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Полный аудит msk.sk-tu.ru</span>
+                <span class="metric-value"><a href="data/seo_audit_msk_sk-tu_ru.json">seo_audit_msk_sk-tu_ru.json</a></span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">GSC данные (CSV)</span>
+                <span class="metric-value"><a href="data/raw/">data/raw/</a></span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Скрипты аудита</span>
+                <span class="metric-value"><a href="scripts/">scripts/</a></span>
+            </div>
+        </div>
+
+        <footer>
+            <p>SEO/AEO/GEO Audit Project — <a href="https://github.com/htsgladiatis/seo-audit-sk-tu-ru">htsgladiatis/seo-audit-sk-tu-ru</a></p>
+            <p style="margin-top:8px;color:#64748b;">Сгенерировано 16.06.2026</p>
+        </footer>
+    </div>
+</body>
+</html>

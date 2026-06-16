@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO/AEO/GEO аудит — СК «Тёплый Угол» (sk-tu.ru / msk.sk-tu.ru)</title>
+<style>
+        :root {
+            /* Фоны */
+            --bg-primary:    #0a0e1a;   /* страница */
+            --bg-secondary:  #111827;   /* футер, secondary */
+            --bg-card:       #1a2235;   /* карточки */
+            --bg-card-hover: #1e2a3f;
+
+            /* Акценты */
+            --accent-blue:   #3b82f6;
+            --accent-cyan:   #06b6d4;
+            --accent-purple: #8b5cf6;
+            --accent-green:  #10b981;
+            --accent-yellow: #f59e0b;
+            --accent-red:    #ef4444;
+            --accent-orange: #f97316;
+
+            /* Текст */
+            --text-primary:   #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted:     #64748b;
+
+            /* Границы */
+            --border:       #1e3a5f;
+            --border-light: #2d3f5a;
+
+            /* Градиенты */
+            --gradient-blue:   linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            --gradient-green:  linear-gradient(135deg, #065f46 0%, #047857 100%);
+            --gradient-red:    linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+            --gradient-yellow: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+
+            /* Тени */
+            --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.15);
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ── СБРОС И БАЗОВЫЕ СТИЛИ ──────────────────────────────── */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 3px; }
+
+        /* ── ТИПОГРАФИКА ────────────────────────────────────────── */
+        h2 { font-size: 17px; font-weight: 700; color: var(--text-primary); margin: 24px 0 14px; }
+        h2:first-child { margin-top: 0; }
+        h3 { font-size: 14px; font-weight: 700; color: var(--text-secondary); margin: 18px 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+        strong { color: var(--text-primary); }
+        ul, ol { padding-left: 20px; margin-bottom: 12px; }
+        li { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 4px; }
+
+        /* ============================================================
+           КОМПОНЕНТЫ ХЕДЕРА
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: header]
+           Применение: sticky шапка страницы
+           Обязательные дочерние элементы: header-inner > header-logo + header-meta */
+        .header {
+            background: linear-gradient(135deg, #0a0e1a 0%, #0f172a 50%, #0a1628 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .header-logo { display: flex; align-items: center; gap: 12px; }
+
+        /* [КОМПОНЕНТ: logo-icon]
+           Применение: иконка в хедере. Текст = первая буква домена или тип аудита.
+           Фон всегда gradient blue→cyan */
+        .logo-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 18px; color: white;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+        .header-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+        .header-subtitle { font-size: 12px; color: var(--text-muted); }
+        .header-meta { display: flex; align-items: center; gap: 16px; }
+        .header-date { font-size: 12px; color: var(--text-muted); }
+
+        /* [КОМПОНЕНТ: badge-critical]
+           Применение: бейдж критичности в хедере.
+           ПРАВИЛО: цвет определяется общей оценкой сайта:
+           – badge-critical (красный) = общий score < 40
+           – badge-warning (жёлтый)  = 40–70
+           – badge-ok (зелёный)      = > 70 */
+        .badge-critical {
+            background: linear-gradient(135deg, #7f1d1d, #dc2626);
+            color: white; padding: 6px 14px; border-radius: 20px;
+            font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+            animation: pulse-red 2s infinite;
+        }
+        .badge-warning {
+            background: linear-gradient(135deg, #78350f, #d97706);
+            color: white; padding: 6px 14px; border-radius: 20px;
+            font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+        }
+        .badge-ok {
+            background: linear-gradient(135deg, #065f46, #059669);
+            color: white; padding: 6px 14px; border-radius: 20px;
+            font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+        }
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.4); }
+            50%       { box-shadow: 0 0 35px rgba(220, 38, 38, 0.7); }
+        }
+
+        /* ============================================================
+           HERO СЕКЦИЯ
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: hero]
+           Применение: заголовочная секция под хедером.
+           Структура: hero-tag → h1 → hero-domain → metrics-grid */
+        .hero {
+            background: linear-gradient(180deg, #0f172a 0%, var(--bg-primary) 100%);
+            padding: 60px 32px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* [КОМПОНЕНТ: hero-tag]
+           Применение: pill-тег над заголовком. Всегда содержит тип аудита.
+           Пример: "Технический SEO-Аудит · Полный анализ" */
+        .hero-tag {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: var(--accent-cyan);
+            padding: 6px 16px; border-radius: 20px;
+            font-size: 12px; font-weight: 600; letter-spacing: 1px;
+            text-transform: uppercase; margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 52px);
+            font-weight: 800;
+            background: linear-gradient(135deg, #f1f5f9 0%, var(--accent-cyan) 50%, var(--accent-blue) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; line-height: 1.15; margin-bottom: 16px;
+        }
+        .hero-domain { font-size: 18px; color: var(--text-secondary); margin-bottom: 40px; }
+        .hero-domain span { color: var(--accent-blue); font-weight: 600; }
+
+        /* ============================================================
+           METRICS GRID (4 карточки под hero)
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: metrics-grid]
+           Применение: 4 ключевые цифры отчёта. Всегда 4 карточки.
+           Данные: клики, показы, позиция, + 1 ключевая проблема (счётчик)
+           ПРАВИЛО заполнения:
+             metric-value = число (кратко, напр. "1 728" или "158K")
+             metric-label = подпись (uppercase будет применён CSS)
+             metric-sub   = контекст/цель (цвет --accent-cyan) */
+        .metrics-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 16px; max-width: 900px; margin: 0 auto;
+        }
+        .metric-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 24px 20px;
+            text-align: center; transition: all 0.3s ease;
+            position: relative; overflow: hidden;
+        }
+        .metric-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+        }
+        .metric-card:hover { transform: translateY(-4px); border-color: var(--accent-blue); box-shadow: var(--shadow-glow); }
+        .metric-value { font-size: 32px; font-weight: 800; color: var(--text-primary); line-height: 1; margin-bottom: 6px; }
+        .metric-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 500; }
+        .metric-sub { font-size: 12px; color: var(--accent-cyan); margin-top: 4px; font-weight: 500; }
+
+        /* ============================================================
+           LAYOUT: SIDEBAR + MAIN
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: layout]
+           Применение: основная двухколоночная сетка.
+           sidebar = 280px фикс, main-content = flex */
+        .layout {
+            max-width: 1400px; margin: 0 auto; padding: 40px 32px;
+            display: grid; grid-template-columns: 280px 1fr;
+            gap: 32px; align-items: start;
+        }
+        .sidebar { position: sticky; top: 80px; }
+        .sidebar-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+        .sidebar-title {
+            padding: 16px 20px; font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        /* [КОМПОНЕНТ: nav-item]
+           Применение: пункты содержания в сайдбаре.
+           Цвет nav-dot = цвет секции (red=критично, yellow=предупреждение, green=ок, blue=инфо) */
+        .nav-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 20px; color: var(--text-secondary);
+            text-decoration: none; font-size: 13px;
+            transition: all 0.2s ease; border-left: 2px solid transparent;
+        }
+        .nav-item:hover { background: rgba(59, 130, 246, 0.08); color: var(--text-primary); border-left-color: var(--accent-blue); }
+        .nav-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+        .dot-red    { background: var(--accent-red);    box-shadow: 0 0 8px rgba(239,68,68,0.6); }
+        .dot-yellow { background: var(--accent-yellow); box-shadow: 0 0 8px rgba(245,158,11,0.6); }
+        .dot-green  { background: var(--accent-green);  box-shadow: 0 0 8px rgba(16,185,129,0.6); }
+        .dot-blue   { background: var(--accent-blue);   box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+
+        /* ============================================================
+           SCORE SECTION (сайдбар)
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: score-section]
+           Применение: мини-диаграмма оценок в сайдбаре.
+           ПРАВИЛО: score-bar width = число от 0 до 100 в виде %
+           Цвет bar: bar-red (<40), bar-yellow (40–70), bar-green (>70)
+           score-badge: badge-red / badge-yellow / badge-green */
+        .score-section {
+            margin-top: 16px; background: var(--bg-card);
+            border: 1px solid var(--border); border-radius: 16px; padding: 20px;
+        }
+        .score-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 700; margin-bottom: 16px; }
+        .score-item { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 8px; }
+        .score-label { font-size: 12px; color: var(--text-secondary); }
+        .score-bar-wrap { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+        .score-bar { height: 100%; border-radius: 2px; transition: width 1s ease; }
+        .bar-red    { background: var(--accent-red); }
+        .bar-yellow { background: var(--accent-yellow); }
+        .bar-green  { background: var(--accent-green); }
+        .score-badge { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; min-width: 24px; text-align: center; }
+        .badge-red    { background: rgba(239,68,68,0.2);   color: var(--accent-red); }
+        .badge-yellow { background: rgba(245,158,11,0.2);  color: var(--accent-yellow); }
+        .badge-green  { background: rgba(16,185,129,0.2);  color: var(--accent-green); }
+
+        /* ============================================================
+           MAIN CONTENT
+           ============================================================ */
+        .main-content { display: flex; flex-direction: column; gap: 32px; }
+
+        /* ============================================================
+           SECTION (основная карточка-контейнер)
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: section]
+           Применение: каждый раздел отчёта = один .section
+           Структура: section-header → section-body
+           ПРАВИЛО icon-color: icon-red/yellow/blue/green/purple/cyan
+             → определяется критичностью раздела */
+        .section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
+        .section-header {
+            padding: 24px 28px; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 16px;
+            background: rgba(255,255,255,0.02);
+        }
+        .section-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+        .icon-red    { background: rgba(239,68,68,0.15);   border: 1px solid rgba(239,68,68,0.3); }
+        .icon-yellow { background: rgba(245,158,11,0.15);  border: 1px solid rgba(245,158,11,0.3); }
+        .icon-blue   { background: rgba(59,130,246,0.15);  border: 1px solid rgba(59,130,246,0.3); }
+        .icon-green  { background: rgba(16,185,129,0.15);  border: 1px solid rgba(16,185,129,0.3); }
+        .icon-purple { background: rgba(139,92,246,0.15);  border: 1px solid rgba(139,92,246,0.3); }
+        .icon-cyan   { background: rgba(6,182,212,0.15);   border: 1px solid rgba(6,182,212,0.3); }
+        .section-title-wrap { flex: 1; }
+        .section-number { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .section-title { font-size: 19px; font-weight: 700; color: var(--text-primary); }
+        .section-body { padding: 28px; }
+
+        /* ============================================================
+           ALERT BOXES
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: alert]
+           Применение: выделенный блок с важным сообщением.
+           Варианты: alert-red / alert-yellow / alert-blue / alert-green
+           ПРАВИЛО: alert-red = ошибка/блокировка, alert-yellow = предупреждение,
+                    alert-blue = информация, alert-green = успех/рекомендация
+           Структура: alert-icon (emoji) + alert-content (alert-title + alert-text) */
+        .alert { border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; display: flex; gap: 14px; align-items: flex-start; }
+        .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+        .alert-content { flex: 1; }
+        .alert-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .alert-text  { font-size: 13px; line-height: 1.5; }
+        .alert-red    { background: rgba(239,68,68,0.08);   border: 1px solid rgba(239,68,68,0.25); }
+        .alert-red    .alert-title { color: #fca5a5; }
+        .alert-red    .alert-text  { color: #fca5a5; opacity: .8; }
+        .alert-yellow { background: rgba(245,158,11,0.08);  border: 1px solid rgba(245,158,11,0.25); }
+        .alert-yellow .alert-title { color: #fcd34d; }
+        .alert-yellow .alert-text  { color: #fcd34d; opacity: .8; }
+        .alert-blue   { background: rgba(59,130,246,0.08);  border: 1px solid rgba(59,130,246,0.25); }
+        .alert-blue   .alert-title { color: #93c5fd; }
+        .alert-blue   .alert-text  { color: #93c5fd; opacity: .8; }
+        .alert-green  { background: rgba(16,185,129,0.08);  border: 1px solid rgba(16,185,129,0.25); }
+        .alert-green  .alert-title { color: #6ee7b7; }
+        .alert-green  .alert-text  { color: #6ee7b7; opacity: .8; }
+
+        /* ============================================================
+           TABLES
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: table]
+           Применение: таблицы данных.
+           Обёртка: .table-wrap (overflow + border)
+           Специальные классы ячеек:
+             td-url       = моноширинный URL (cyan)
+             td-rank      = серый мелкий текст (рейтинг)
+             td-pos-good / td-pos-mid / td-pos-bad = цвет позиции
+             td-ctr-good / td-ctr-mid / td-ctr-bad = цвет CTR
+             highlight-row = голубая подсветка строки */
+        .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        thead th {
+            background: rgba(59,130,246,0.08); padding: 12px 16px; text-align: left;
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
+            color: var(--text-muted); border-bottom: 1px solid var(--border); white-space: nowrap;
+        }
+        tbody tr { border-bottom: 1px solid rgba(30,58,95,0.5); transition: background 0.2s ease; }
+        tbody tr:last-child { border-bottom: none; }
+        tbody tr:hover { background: rgba(59,130,246,0.04); }
+        tbody td { padding: 11px 16px; color: var(--text-secondary); vertical-align: middle; }
+        tbody td:first-child { color: var(--text-primary); font-weight: 500; }
+        .td-rank { color: var(--text-muted); font-size: 12px; }
+        .td-url  { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; color: var(--accent-cyan); }
+        .td-pos-good { color: var(--accent-green);  font-weight: 700; }
+        .td-pos-mid  { color: var(--accent-yellow); font-weight: 700; }
+        .td-pos-bad  { color: var(--accent-red);    font-weight: 700; }
+        .td-ctr-good { color: var(--accent-green);  font-weight: 600; }
+        .td-ctr-mid  { color: var(--accent-yellow); font-weight: 600; }
+        .td-ctr-bad  { color: var(--accent-red);    font-weight: 600; }
+        .highlight-row { background: rgba(59,130,246,0.08) !important; }
+
+        /* ============================================================
+           STATUS PILLS
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: pill]
+           Применение: цветовой статус inline в таблицах и заголовках.
+           Варианты: pill-red / pill-green / pill-yellow / pill-blue
+           ПРАВИЛО: pill в section-header = общий статус секции */
+        .pill { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+        .pill-red    { background: rgba(239,68,68,0.15);   color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+        .pill-green  { background: rgba(16,185,129,0.15);  color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+        .pill-yellow { background: rgba(245,158,11,0.15);  color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+        .pill-blue   { background: rgba(59,130,246,0.15);  color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+
+        /* ============================================================
+           CODE BLOCKS
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: code-block]
+           Применение: блоки кода, конфигов, примеры robots.txt / schema.
+           code-dots = декоративный macOS-стиль (red/yellow/green кружки)
+           Подсветка синтаксиса через span: code-comment / code-key / code-val /
+             code-str / code-err / code-good / code-warn */
+        .code-block { background: #0d1117; border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; margin: 16px 0; overflow-x: auto; }
+        .code-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+        .code-dots { display: flex; gap: 5px; }
+        .code-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .code-dot-red    { background: #ff5f57; }
+        .code-dot-yellow { background: #febc2e; }
+        .code-dot-green  { background: #28c840; }
+        .code-label { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; }
+        pre { font-family: 'SF Mono','Fira Code','Monaco',monospace; font-size: 12px; color: #e2e8f0; line-height: 1.7; white-space: pre; overflow-x: auto; }
+        .code-comment { color: #6b7280; }
+        .code-key     { color: #60a5fa; }
+        .code-val     { color: #34d399; }
+        .code-str     { color: #f472b6; }
+        .code-err     { color: #f87171; }
+        .code-good    { color: #34d399; }
+        .code-warn    { color: #fbbf24; }
+
+        /* ============================================================
+           GRID 2 COLUMNS + INFO CARDS
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: grid-2]
+           Применение: двухколоночная сетка внутри section-body.
+           Дочерние: info-card (нейтральная карточка с данными) */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+        .info-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+        .info-card-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 12px; }
+
+        /* ============================================================
+           DEVICE STATS GRID
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: device-grid]
+           Применение: 3 карточки с ключевыми метриками (клики/показы/позиция).
+           device-card = карточка с иконкой, числом, подписью
+           ПРАВИЛО: цвет числа определяется акцентом для данной метрики:
+             клики = --accent-blue, показы = --accent-cyan, позиция = --accent-yellow */
+        .device-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+        .device-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+        .device-icon { font-size: 28px; margin-bottom: 10px; }
+        .device-name { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; }
+        .device-stat { display: flex; justify-content: space-between; margin-bottom: 6px; }
+        .device-stat-label { font-size: 11px; color: var(--text-muted); }
+        .device-stat-val   { font-size: 11px; font-weight: 600; color: var(--text-secondary); }
+
+        /* ============================================================
+           COMPARE CARDS (было/стало, хорошо/плохо)
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: compare-wrap]
+           Применение: визуальное сравнение двух состояний.
+           compare-good = зелёная сторона (правильно/текущее хорошее)
+           compare-bad  = красная сторона (ошибка/что не так)
+           compare-item = пункт списка с arrow (→) */
+        .compare-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+        .compare-card { border-radius: 12px; padding: 20px; }
+        .compare-good { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); }
+        .compare-bad  { background: rgba(239,68,68,0.06);  border: 1px solid rgba(239,68,68,0.2); }
+        .compare-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+        .compare-good .compare-title { color: var(--accent-green); }
+        .compare-bad  .compare-title { color: var(--accent-red); }
+        .compare-item { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; padding-left: 14px; position: relative; line-height: 1.5; }
+        .compare-item::before { content: '→'; position: absolute; left: 0; font-size: 11px; }
+        .compare-good .compare-item::before { color: var(--accent-green); }
+        .compare-bad  .compare-item::before { color: var(--accent-red); }
+
+        /* ============================================================
+           DUPLICATE PAIR
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: dup-pair]
+           Применение: визуализация пары дублирующих URL.
+           dup-original = оригинальный URL (cyan)
+           dup-clone    = дубль (red)
+           dup-arrow    = разделитель (→ или ≠) */
+        .dup-pair { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.2); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+        .dup-url { font-family: monospace; font-size: 12px; background: rgba(0,0,0,0.3); padding: 8px 12px; border-radius: 8px; word-break: break-all; }
+        .dup-original { color: var(--accent-cyan); border-left: 3px solid var(--accent-cyan); }
+        .dup-clone    { color: var(--accent-red);  border-left: 3px solid var(--accent-red); }
+        .dup-arrow { color: var(--accent-red); font-size: 20px; text-align: center; }
+
+        /* ============================================================
+           PRIORITY BLOCKS (план задач)
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: priority-block]
+           Применение: блок задач одного приоритета.
+           priority-red    = срочно (неделя 1–2)
+           priority-yellow = важно (неделя 2–4)
+           priority-green  = оптимизация (месяц 2+)
+           Структура: priority-header (badge + title + timeline) → task-item × N */
+        .priority-block { border-radius: 14px; padding: 24px; margin-bottom: 20px; }
+        .priority-red    { background: rgba(239,68,68,0.06);   border: 1px solid rgba(239,68,68,0.25); }
+        .priority-yellow { background: rgba(245,158,11,0.06);  border: 1px solid rgba(245,158,11,0.25); }
+        .priority-green  { background: rgba(16,185,129,0.06);  border: 1px solid rgba(16,185,129,0.25); }
+        .priority-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .priority-badge { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+        .pb-red    { background: rgba(239,68,68,0.2);   color: #fca5a5; }
+        .pb-yellow { background: rgba(245,158,11,0.2);  color: #fcd34d; }
+        .pb-green  { background: rgba(16,185,129,0.2);  color: #6ee7b7; }
+        .priority-title { font-size: 16px; font-weight: 700; }
+        .priority-red    .priority-title { color: #fca5a5; }
+        .priority-yellow .priority-title { color: #fcd34d; }
+        .priority-green  .priority-title { color: #6ee7b7; }
+        .priority-timeline { font-size: 12px; color: var(--text-muted); margin-left: auto; background: rgba(0,0,0,0.2); padding: 3px 10px; border-radius: 10px; }
+
+        /* [КОМПОНЕНТ: task-item]
+           Применение: задача внутри priority-block.
+           task-num = порядковый номер (кружок, цвет = приоритет)
+           task-title = название задачи
+           task-desc  = детали / пример кода */
+        .task-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: flex-start; }
+        .task-item:last-child { border-bottom: none; }
+        .task-num { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+        .tn-red    { background: rgba(239,68,68,0.2);   color: #fca5a5; }
+        .tn-yellow { background: rgba(245,158,11,0.2);  color: #fcd34d; }
+        .tn-green  { background: rgba(16,185,129,0.2);  color: #6ee7b7; }
+        .task-text { flex: 1; }
+        .task-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+        .task-desc  { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+        /* ============================================================
+           CHECKLIST
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: checklist]
+           Применение: интерактивный чек-лист задач.
+           checklist-group = группа (с заголовком checklist-group-title)
+           checklist-item  = задача (класс "checked" = выполнена)
+           checklist-tag   = тег приоритета (ct-red / ct-yellow / ct-green)
+           ПРАВИЛО: checked добавляется JS через onclick. */
+        .checklist-group { margin-bottom: 24px; }
+        .checklist-group-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+        .checklist-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(30,58,95,0.3); transition: all 0.2s ease; cursor: pointer; }
+        .checklist-item:last-child { border-bottom: none; }
+        .checklist-item:hover .checkbox { border-color: var(--accent-blue); }
+        .checkbox { width: 18px; height: 18px; border: 2px solid var(--border-light); border-radius: 4px; flex-shrink: 0; margin-top: 2px; transition: all 0.2s ease; position: relative; }
+        .checklist-item.checked .checkbox { background: var(--accent-green); border-color: var(--accent-green); }
+        .checklist-item.checked .checkbox::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: white; font-size: 11px; font-weight: 700; }
+        .checklist-item.checked .checklist-text { text-decoration: line-through; color: var(--text-muted); }
+        .checklist-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; flex: 1; }
+        .checklist-tag { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 6px; flex-shrink: 0; }
+        .ct-red    { background: rgba(239,68,68,0.15);   color: #fca5a5; }
+        .ct-yellow { background: rgba(245,158,11,0.15);  color: #fcd34d; }
+        .ct-green  { background: rgba(16,185,129,0.15);  color: #6ee7b7; }
+
+        /* ============================================================
+           REDIRECT LIST
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: redirect-list]
+           Применение: список редиректов FROM → TO.
+           redirect-from = красный (исходный URL)
+           redirect-to   = зелёный (целевой URL)
+           redirect-code = бейдж HTTP-кода */
+        .redirect-list { background: #0d1117; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+        .redirect-item { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid rgba(30,58,95,0.4); font-family: monospace; font-size: 12px; }
+        .redirect-item:last-child { border-bottom: none; }
+        .redirect-from { color: var(--accent-red); }
+        .redirect-arr  { color: var(--text-muted); font-size: 14px; }
+        .redirect-to   { color: var(--accent-green); }
+        .redirect-code { margin-left: auto; background: rgba(16,185,129,0.15); color: var(--accent-green); padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+
+        /* ============================================================
+           OBSERVATION BLOCKS
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: obs-block]
+           Применение: короткое наблюдение/вывод (фиолетовый акцент).
+           obs-tag = тег-метка слева
+           obs-text = текст наблюдения */
+        .obs-block { display: flex; gap: 10px; padding: 12px 16px; background: rgba(139,92,246,0.06); border: 1px solid rgba(139,92,246,0.2); border-radius: 10px; margin-bottom: 10px; align-items: flex-start; }
+        .obs-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+        .obs-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+        .obs-tag { display: inline-block; background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.3); color: #c4b5fd; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-right: 6px; }
+
+        /* ============================================================
+           TREND BAR (мини-спарклайн)
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: trend-bar]
+           Применение: небольшой бар-чарт динамики (по неделям/месяцам).
+           trend-col = одна колонка. data-val = всплывающее значение.
+           Высота задаётся инлайн: style="height: 60%"
+           Цвет: background задаётся инлайн через var(--accent-*) */
+        .trend-bar { display: flex; align-items: flex-end; gap: 4px; height: 40px; margin: 12px 0; }
+        .trend-col { flex: 1; border-radius: 3px 3px 0 0; transition: all 0.3s ease; position: relative; }
+        .trend-col:hover::after { content: attr(data-val); position: absolute; bottom: calc(100% + 4px); left: 50%; transform: translateX(-50%); background: var(--bg-card); border: 1px solid var(--border); padding: 2px 6px; border-radius: 4px; font-size: 10px; white-space: nowrap; color: var(--text-primary); }
+
+        /* ============================================================
+           MISCELLANEOUS UTILITIES
+           ============================================================ */
+        .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 24px 0; }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+
+        /* [КОМПОНЕНТ: footer]
+           Применение: подвал страницы с датой и условиями.
+           footer-text span = акцентированный текст (cyan) */
+        .footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 32px; text-align: center; margin-top: 40px; }
+        .footer-text { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+        .footer-text span { color: var(--accent-cyan); }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1100px) {
+            .layout { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+        }
+        @media (max-width: 768px) {
+            .header-inner { padding: 12px 16px; }
+            .layout { padding: 20px 16px; }
+            .hero { padding: 40px 16px 30px; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .grid-2, .compare-wrap { grid-template-columns: 1fr; }
+            .device-grid { grid-template-columns: 1fr; }
+            .section-body { padding: 20px 16px; }
+            .dup-pair { grid-template-columns: 1fr; }
+            .dup-arrow { transform: rotate(90deg); }
+        }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <div class="logo-icon">S</div>
+      <div>
+        <div class="header-title">SEO / AEO / GEO Аудит</div>
+        <div class="header-subtitle">sk-tu.ru · msk.sk-tu.ru</div>
+      </div>
+    </div>
+    <div class="header-meta">
+      <div class="badge-warning">🟡 ВЫСОКИЙ РИСК</div>
+      <div class="header-date">16 июня 2026 г.</div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Технический SEO-Аудит · Полный анализ 761 страницы</div>
+  <h1>SEO-Аудит сайта<br>СК «Тёплый Угол»</h1>
+  <p class="hero-domain" style="margin-bottom:8px;">Домены: <span>sk-tu.ru</span> (Санкт-Петербург) + <span>msk.sk-tu.ru</span> (Москва) · Ниша: каркасные дома · Рынок: Москва и Санкт-Петербург</p>
+  <p class="hero-domain">Период данных Яндекс.Вебмастера: <span>16.03.2026 – 14.06.2026</span> · 3 месяца (90 дней)</p>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-value">388K</div>
+      <div class="metric-label">Кликов за 3 мес.</div>
+      <div class="metric-sub">sk-tu 125K · msk 263K</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">2.43M</div>
+      <div class="metric-label">Показов за 3 мес.</div>
+      <div class="metric-sub">CTR 14.4–16.9%</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">~5.6</div>
+      <div class="metric-label">Средняя позиция</div>
+      <div class="metric-sub">цель: ТОП-3</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">761</div>
+      <div class="metric-label">Страниц без Schema.org</div>
+      <div class="metric-sub">критично · 100%</div>
+    </div>
+  </div>
+</section>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">Содержание</div>
+      <a class="nav-item" href="#s1"><span class="nav-dot dot-yellow"></span>1. Резюме</a>
+      <a class="nav-item" href="#s2"><span class="nav-dot dot-blue"></span>2. Поисковая видимость</a>
+      <a class="nav-item" href="#s3"><span class="nav-dot dot-red"></span>3. Индексация и HTTP</a>
+      <a class="nav-item" href="#s4"><span class="nav-dot dot-yellow"></span>4. Дубли и мета-теги</a>
+      <a class="nav-item" href="#s5"><span class="nav-dot dot-red"></span>5. Schema / OG / hreflang</a>
+      <a class="nav-item" href="#s6"><span class="nav-dot dot-red"></span>6. Изображения (alt)</a>
+      <a class="nav-item" href="#s7"><span class="nav-dot dot-purple"></span>7. sk-tu vs msk</a>
+      <a class="nav-item" href="#s8"><span class="nav-dot dot-yellow"></span>8. План работ</a>
+      <a class="nav-item" href="#s9"><span class="nav-dot dot-green"></span>9. Чек-лист</a>
+    </div>
+
+    <div class="score-section">
+      <div class="score-title">Оценки по параметрам</div>
+      <div class="score-item"><span class="score-label">Индексация</span><div class="score-bar-wrap"><div class="score-bar bar-yellow" style="width:58%"></div></div><span class="score-badge badge-yellow">58</span></div>
+      <div class="score-item"><span class="score-label">Дублирование</span><div class="score-bar-wrap"><div class="score-bar bar-yellow" style="width:62%"></div></div><span class="score-badge badge-yellow">62</span></div>
+      <div class="score-item"><span class="score-label">Sitemap</span><div class="score-bar-wrap"><div class="score-bar bar-green" style="width:82%"></div></div><span class="score-badge badge-green">82</span></div>
+      <div class="score-item"><span class="score-label">Robots.txt</span><div class="score-bar-wrap"><div class="score-bar bar-green" style="width:85%"></div></div><span class="score-badge badge-green">85</span></div>
+      <div class="score-item"><span class="score-label">Мета-теги</span><div class="score-bar-wrap"><div class="score-bar bar-yellow" style="width:55%"></div></div><span class="score-badge badge-yellow">55</span></div>
+      <div class="score-item"><span class="score-label">Schema.org</span><div class="score-bar-wrap"><div class="score-bar bar-red" style="width:5%"></div></div><span class="score-badge badge-red">5</span></div>
+      <div class="score-item"><span class="score-label">Изображения (alt)</span><div class="score-bar-wrap"><div class="score-bar bar-red" style="width:12%"></div></div><span class="score-badge badge-red">12</span></div>
+      <div class="score-item"><span class="score-label">Перелинковка</span><div class="score-bar-wrap"><div class="score-bar bar-yellow" style="width:50%"></div></div><span class="score-badge badge-yellow">50</span></div>
+      <div class="score-item"><span class="score-label">Контент</span><div class="score-bar-wrap"><div class="score-bar bar-yellow" style="width:40%"></div></div><span class="score-badge badge-yellow">40</span></div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- SECTION 1 -->
+    <section id="s1" class="section">
+      <div class="section-header">
+        <div class="section-icon icon-yellow">📋</div>
+        <div class="section-title-wrap">
+          <div class="section-number">Раздел 01</div>
+          <div class="section-title">Резюме аудита</div>
+        </div>
+        <span class="pill pill-yellow">Высокий риск</span>
+      </div>
+      <div class="section-body">
+        <div class="alert alert-yellow">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-content">
+            <div class="alert-title">Сайт собирает хороший трафик, но техническая база уязвима</div>
+            <div class="alert-text">Оба домена ранжируются в среднем на позиции ~5.6 и дают суммарно 388K кликов, однако полное отсутствие микроразметки, 15% битых страниц в обходе и 39 650 изображений без alt сдерживают рост и ставят под угрозу видимость в AI-поиске (AEO/GEO).</div>
+          </div>
+        </div>
+        <p>Аудит охватывает <strong>все 761 страницу</strong> каждого домена (полный прогон) плюс анализ обхода на <strong>51 492 URL</strong> и выгрузку запросов из Яндекс.Вебмастера.</p>
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-title">🔴 Критично</div>
+            <ul>
+              <li>Schema.org / Open Graph отсутствуют на <strong>100% страниц</strong> обоих доменов</li>
+              <li>HTTP 500 на ключевых страницах, включая главную</li>
+              <li>39 650 изображений (98%) без атрибута alt</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">🟡 Важно</div>
+            <ul>
+              <li>15% URL в обходе отдают 404 (7 759 шт.)</li>
+              <li>53 группы дублирующихся title, 497 title длиннее 70 символов</li>
+              <li>Дубль <code>/index.php</code> на обоих доменах</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section id="s2" class="section">
+      <div class="section-header">
+        <div class="section-icon icon-blue">📈</div>
+        <div class="section-title-wrap">
+          <div class="section-number">Раздел 02</div>
+          <div class="section-title">Поисковая видимость (Яндекс)</div>
+        </div>
+        <span class="pill pill-blue">Сильная сторона</span>
+      </div>
+      <div class="section-body">
+        <p>Все цифры Яндекс.Вебмастера — за период <strong>16.03.2026 – 14.06.2026</strong> (3 месяца, 90 дней).</p>
+        <div class="device-grid">
+          <div class="device-card">
+            <div class="device-icon">🏠</div>
+            <div class="device-name">sk-tu.ru</div>
+            <div class="device-stat"><span class="device-stat-label">Клики</span><span class="device-stat-val">124 839</span></div>
+            <div class="device-stat"><span class="device-stat-label">Показы</span><span class="device-stat-val">867 944</span></div>
+            <div class="device-stat"><span class="device-stat-label">CTR</span><span class="device-stat-val">14.38%</span></div>
+            <div class="device-stat"><span class="device-stat-label">Ср. позиция</span><span class="device-stat-val">5.65</span></div>
+          </div>
+          <div class="device-card">
+            <div class="device-icon">🏙️</div>
+            <div class="device-name">msk.sk-tu.ru</div>
+            <div class="device-stat"><span class="device-stat-label">Клики</span><span class="device-stat-val">263 262</span></div>
+            <div class="device-stat"><span class="device-stat-label">Показы</span><span class="device-stat-val">1 560 445</span></div>
+            <div class="device-stat"><span class="device-stat-label">CTR</span><span class="device-stat-val">16.87%</span></div>
+            <div class="device-stat"><span class="device-stat-label">Ср. позиция</span><span class="device-stat-val">5.51</span></div>
+          </div>
+          <div class="device-card">
+            <div class="device-icon">📊</div>
+            <div class="device-name">Суммарно</div>
+            <div class="device-stat"><span class="device-stat-label">Клики</span><span class="device-stat-val">388 101</span></div>
+            <div class="device-stat"><span class="device-stat-label">Показы</span><span class="device-stat-val">2 428 389</span></div>
+            <div class="device-stat"><span class="device-stat-label">CTR</span><span class="device-stat-val">~15.9%</span></div>
+            <div class="device-stat"><span class="device-stat-label">Ср. позиция</span><span class="device-stat-val">~5.6</span></div>
+          </div>
+        </div>
+
+        <h3>Топ-страницы sk-tu.ru по показам</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Страница</th><th>Показы</th><th>CTR</th><th>Оценка</th></tr></thead>
+            <tbody>
+              <tr><td class="td-url">/catalog/karkasnye-doma/</td><td>390 000</td><td class="td-ctr-mid">—</td><td><span class="pill pill-blue">Драйвер</span></td></tr>
+              <tr><td class="td-url">/catalog/.../do-100m2/</td><td>97 000</td><td class="td-ctr-good">26.2%</td><td><span class="pill pill-green">Отлично</span></td></tr>
+              <tr><td class="td-url">/ (главная)</td><td>80 000</td><td class="td-ctr-mid">—</td><td><span class="pill pill-yellow">HTTP 500</span></td></tr>
+              <tr><td class="td-url">/catalog/.../100-150m2/</td><td>60 000</td><td class="td-ctr-good">28.4%</td><td><span class="pill pill-green">Отлично</span></td></tr>
+              <tr><td class="td-url">/catalog/.../odnoetazhnye/</td><td>54 000</td><td class="td-ctr-mid">—</td><td><span class="pill pill-blue">Стабильно</span></td></tr>
+              <tr><td class="td-url">/catalog/.../barnkhaus/</td><td>31 000</td><td class="td-ctr-bad">2.7%</td><td><span class="pill pill-red">Слабый CTR</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="obs-block">
+          <div class="obs-icon">💡</div>
+          <div class="obs-text"><span class="obs-tag">НАБЛЮДЕНИЕ</span>Раздел «Барнхаус» собирает 31K показов при CTR всего 2.7% — сигнал нерелевантного или непривлекательного title/сниппета. Оптимизация сниппета здесь даст быстрый прирост кликов.</div>
+        </div>
+        <div class="obs-block">
+          <div class="obs-icon">⚠️</div>
+          <div class="obs-text"><span class="obs-tag">ПАРАЗИТ-ТРАФИК</span>Домен-конкурент <strong>sdbgp.ru</strong> перехватывает часть брендового трафика с нулевым CTR — стоит усилить брендовые посадочные и Schema Organization.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section id="s3" class="section">
+      <div class="section-header">
+        <div class="section-icon icon-red">🔻</div>
+        <div class="section-title-wrap">
+          <div class="section-number">Раздел 03</div>
+          <div class="section-title">Индексация и HTTP-статусы</div>
+        </div>
+        <span class="pill pill-red">Критично</span>
+      </div>
+      <div class="section-body">
+        <p><strong>51 492 URL</strong> — это полный <strong>обход сайта (crawl)</strong>, а <strong>не sitemap</strong>. Сюда попадают все встреченные адреса: рабочие страницы, 301-редиректы со старого раздела <code>/katalog/</code>, 404 и URL с мусорными GET-параметрами (напр. <code>?ycliid=…</code>). В sitemap при этом всего <strong>761 страница</strong>. Доля валидных страниц (200 OK) среди всех обойдённых URL — 59.6%.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>HTTP-код</th><th>Кол-во</th><th>Доля</th><th>Комментарий</th></tr></thead>
+            <tbody>
+              <tr><td><span class="pill pill-green">200 OK</span></td><td>30 700</td><td class="td-pos-good">59.6%</td><td>Рабочие страницы</td></tr>
+              <tr><td><span class="pill pill-blue">301</span></td><td>13 013</td><td class="td-pos-mid">25.3%</td><td>12 488 — старый раздел /katalog/</td></tr>
+              <tr><td><span class="pill pill-yellow">404</span></td><td>7 759</td><td class="td-pos-mid">15.1%</td><td>~5 022 реальных битых + ~2 737 мусорных параметров</td></tr>
+              <tr class="highlight-row"><td><span class="pill pill-red">500</span></td><td>17</td><td class="td-pos-bad">&lt;0.1%</td><td>Среди них главная страница!</td></tr>
+              <tr><td><span class="pill pill-red">502</span></td><td>1</td><td class="td-pos-bad">&lt;0.1%</td><td>Сбой шлюза</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="alert alert-red">
+          <div class="alert-icon">🚨</div>
+          <div class="alert-content">
+            <div class="alert-title">HTTP 500 на коммерчески важных страницах</div>
+            <div class="alert-text">Ошибку сервера отдают: <code>/</code>, <code>/catalog/karkasnye-doma/</code>, <code>/contacts/</code>, <code>/portfolio/</code>. Это прямая потеря трафика и доверия поисковика — устранить в первую очередь.</div>
+          </div>
+        </div>
+        <h3>404 по разделам</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Раздел</th><th>404</th></tr></thead>
+            <tbody>
+              <tr><td class="td-url">/katalog/ (старый)</td><td class="td-pos-bad">4 672</td></tr>
+              <tr><td class="td-url">/articles/</td><td class="td-pos-mid">1 257</td></tr>
+              <tr><td class="td-url">/catalog/</td><td class="td-pos-mid">587</td></tr>
+              <tr><td class="td-url">/o-nas/</td><td class="td-pos-mid">483</td></tr>
+              <tr><td class="td-url">/rabotyi/</td><td class="td-pos-mid">337</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section id="s4" class="section">
+      <div class="section-header">
+        <div class="section-icon icon-yellow">🔀</div>
+        <div class="section-title-wrap">
+          <div class="section-number">Раздел 04</div>
+          <div class="section-title">Дубли и мета-теги</div>
+        </div>
+        <span class="pill pill-yellow">Требует внимания</span>
+      </div>
+      <div class="section-body">
+        <h3>Дубли страниц</h3>
+        <div class="dup-pair">
+          <div class="dup-url dup-original">/</div>
+          <div class="dup-arrow">≠</div>
+          <div class="dup-url dup-clone">/index.php</div>
+        </div>
+        <p>На обоих доменах найден <strong>1 технический дубль</strong> — <code>/index.php</code> дублирует главную. Решается 301-редиректом и каноническим URL.</p>
+        <h3>Качество title</h3>
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-title">sk-tu.ru</div>
+            <ul>
+              <li>53 группы дублирующихся title</li>
+              <li>497 title длиннее 70 символов</li>
+              <li>1 пустой title</li>
+              <li>Без Description: 3 страницы</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">msk.sk-tu.ru</div>
+            <ul>
+              <li>58 групп дублирующихся title</li>
+              <li>313 title длиннее 70 символов</li>
+              <li>Без Description: 0 страниц</li>
+            </ul>
+          </div>
+        </div>
+        <div class="obs-block">
+          <div class="obs-icon">💡</div>
+          <div class="obs-text"><span class="obs-tag">РЕКОМЕНДАЦИЯ</span>Сократить длинные title до 60–65 символов и устранить дубли через шаблоны с уникальными переменными (тип дома · площадь · регион).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section id="s5" class="section">
+      <div class="section-header">
+        <div class="section-icon icon-red">🧩</div>
+        <div class="section-title-wrap">
+          <div class="section-number">Раздел 05</div>
+          <div class="section-title">Schema.org / Open Graph / hreflang</div>
+        </div>
+        <span class="pill pill-red">0 / 761</span>
+      </div>
+      <div class="section-body">
+        <div class="alert alert-red">
+          <div class="alert-icon">🚨</div>
+          <div class="alert-content">
+            <div class="alert-title">Микроразметка отсутствует на 100% страниц обоих доменов</div>
+            <div class="alert-text">Ни Schema.org, ни Open Graph, ни hreflang не найдены ни на одной из 761 страницы каждого домена. Это блокирует расширенные сниппеты, корректный шеринг в соцсетях и видимость в AI-поиске (AEO/GEO).</div>
+          </div>
+        </div>
+        <div class="compare-wrap">
+          <div class="compare-card compare-bad">
+            <div class="compare-title">✗ Сейчас</div>
+            <div class="compare-item">0 страниц с Schema.org</div>
+            <div class="compare-item">0 страниц с Open Graph</div>
+            <div class="compare-item">0 страниц с hreflang</div>
+            <div class="compare-item">Нет шанса на rich-сниппеты и AI-цитирование</div>
+          </div>
+          <div class="compare-card compare-good">
+            <div class="compare-title">✓ Цель</div>
+            <div class="compare-item">Organization + LocalBusiness на всех страницах</div>
+            <div class="compare-item">Product / Offer на карточках домов</div>
+            <div class="compare-item">BreadcrumbList + FAQPage</div>
+            <div class="compare-item">Open Graph для соцсетей</div>
+          </div>
+        </div>
+        <div class="code-block">
+          <div class="code-header"><div class="code-dots"><div class="code-dot code-dot-red"></div><div class="code-dot code-dot-yellow"></div><div class="code-dot code-dot-green"></div></div><span class="code-label">schema-product.json — пример для карточки дома</span></div>
+<pre><span class="code-key">{</span>
+  <span class="code-str">"@context"</span>: <span class="code-val">"https://schema.org"</span>,
+  <span class="code-str">"@type"</span>: <span class="code-val">"Product"</span>,
+  <span class="code-str">"name"</span>: <span class="code-val">"Каркасный дом ДК-4"</span>,
+  <span class="code-str">"brand"</span>: <span class="code-val">"Тёплый Угол"</span>,
+  <span class="code-str">"offers"</span>: <span class="code-key">{</span>
+    <span class="code-str">"@type"</span>: <span class="code-val">"Offer"</span>,
+    <span class="code-str">"priceCurrency"</span>: <span class="code-val">"RUB"</span>,
+    <span class="code-str">"availability"</span>: <span class="code-val">"https://schema.org/InStock"</span>
+  <span class="code-key">}</span>
+<span class="code-key">}</span></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section id="s6" class="section">
+      <div class="section-header">
+        <div class="section-icon icon-red">🖼️</div>
+        <div class="section-title-wrap">
+          <div class="section-number">Раздел 06</div>
+          <div class="section-title">Изображения без alt</div>
+        </div>
+        <span class="pill pill-red">98%</span>
+      </div>
+      <div class="section-body">
+        <div class="device-grid">
+          <div class="device-card">
+            <div class="device-icon">🖼️</div>
+            <div class="device-name">Всего изображений</div>
+            <div class="metric-value" style="font-size:24px;color:var(--accent-cyan);">40 411</div>
+          </div>
+          <div class="device-card">
+            <div class="device-icon">🚫</div>
+            <div class="device-name">Без alt</div>
+            <div class="metric-value" style="font-size:24px;color:var(--accent-red);">39 650</div>
+          </div>
+          <div class="device-card">
+            <div class="device-icon">📐</div>
+            <div class="device-name">В среднем на стр.</div>
+            <div class="metric-value" style="font-size:24px;color:var(--accent-yellow);">52</div>
+          </div>
+        </div>
+        <p>98% изображений (39 650 из 40 411) не имеют атрибута <code>alt</code>. Максимум на одной странице — <strong>1 127</strong> изображений. Это потери в поиске по картинкам, доступности и AI-индексации визуала.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 7 -->
+    <section id="s7" class="section">
+      <div class="section-header">
+        <div class="section-icon icon-purple">🔍</div>
+        <div class="section-title-wrap">
+          <div class="section-number">Раздел 07</div>
+          <div class="section-title">Сравнение sk-tu.ru и msk.sk-tu.ru</div>
+        </div>
+        <span class="pill pill-blue">Наблюдение</span>
+      </div>
+      <div class="section-body">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Параметр</th><th>sk-tu.ru</th><th>msk.sk-tu.ru</th></tr></thead>
+            <tbody>
+              <tr><td>Страниц</td><td>761</td><td>761</td></tr>
+              <tr><td>Без Schema.org</td><td class="td-pos-bad">761 (100%)</td><td class="td-pos-bad">761 (100%)</td></tr>
+              <tr><td>Без Open Graph</td><td class="td-pos-bad">761</td><td class="td-pos-bad">761</td></tr>
+              <tr><td>Изобр. без alt</td><td class="td-pos-bad">39 650 / 40 411</td><td class="td-pos-bad">39 650 / 40 411</td></tr>
+              <tr><td>Без Description</td><td class="td-pos-mid">3</td><td class="td-pos-good">0</td></tr>
+              <tr><td>Дубли</td><td class="td-pos-mid">1 (/index.php)</td><td class="td-pos-mid">1 (/index.php)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="obs-block">
+          <div class="obs-icon">💡</div>
+          <div class="obs-text"><span class="obs-tag">НАБЛЮДЕНИЕ</span>Показатели обоих доменов совпадают до единицы (40 411 изображений, 39 650 без alt, идентичные распределения, все 761 путь URL одинаковы). Это ожидаемо: msk.sk-tu.ru (Москва) — региональная версия sk-tu.ru (Санкт-Петербург) с тем же каталогом.</div>
+        </div>
+        <div class="alert alert-blue">
+          <div class="alert-icon">ℹ️</div>
+          <div class="alert-content">
+            <div class="alert-title">Это две региональные версии одного каталога</div>
+            <div class="alert-text">sk-tu.ru (Санкт-Петербург) и msk.sk-tu.ru (Москва) — региональные версии с одинаковым каталогом домов, поэтому совпадение страниц и изображений ожидаемо. Важно настроить hreflang/canonical между ними, чтобы избежать каннибализации. Отдельно: детектор H1 показал 0 страниц без H1, тогда как в реальном HTML каталога H1 отсутствует — рекомендуется ручная перепроверка H1.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8 -->
+    <section id="s8" class="section">
+      <div class="section-header">
+        <div class="section-icon icon-yellow">🗺️</div>
+        <div class="section-title-wrap">
+          <div class="section-number">Раздел 08</div>
+          <div class="section-title">План работ по приоритету</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="priority-block priority-red">
+          <div class="priority-header">
+            <span class="priority-badge pb-red">Срочно</span>
+            <span class="priority-title">Устранить блокеры</span>
+            <span class="priority-timeline">Неделя 1–2</span>
+          </div>
+          <div class="task-item"><div class="task-num tn-red">1</div><div class="task-text"><div class="task-title">Починить HTTP 500</div><div class="task-desc">Главная, /catalog/karkasnye-doma/, /contacts/, /portfolio/ — устранить ошибки сервера.</div></div></div>
+          <div class="task-item"><div class="task-num tn-red">2</div><div class="task-text"><div class="task-title">Внедрить Schema.org + Open Graph</div><div class="task-desc">Organization/LocalBusiness на всех страницах, Product/Offer на карточках, BreadcrumbList, FAQPage.</div></div></div>
+          <div class="task-item"><div class="task-num tn-red">3</div><div class="task-text"><div class="task-title">Закрыть дубль /index.php</div><div class="task-desc">301-редирект на / и canonical на обоих доменах.</div></div></div>
+        </div>
+        <div class="priority-block priority-yellow">
+          <div class="priority-header">
+            <span class="priority-badge pb-yellow">Важно</span>
+            <span class="priority-title">Чистка и мета-теги</span>
+            <span class="priority-timeline">Неделя 2–4</span>
+          </div>
+          <div class="task-item"><div class="task-num tn-yellow">4</div><div class="task-text"><div class="task-title">Разобрать 7 759 страниц 404</div><div class="task-desc">301 для ценных URL старого /katalog/, удаление мусорных параметров.</div></div></div>
+          <div class="task-item"><div class="task-num tn-yellow">5</div><div class="task-text"><div class="task-title">Уникализировать title и сократить до 60–65 симв.</div><div class="task-desc">53/58 групп дублей, 497/313 слишком длинных, 1 пустой.</div></div></div>
+          <div class="task-item"><div class="task-num tn-yellow">6</div><div class="task-text"><div class="task-title">Добавить alt к изображениям</div><div class="task-desc">39 650 изображений — массовая генерация шаблонных alt по типу/названию объекта.</div></div></div>
+        </div>
+        <div class="priority-block priority-green">
+          <div class="priority-header">
+            <span class="priority-badge pb-green">Рост</span>
+            <span class="priority-title">Оптимизация и AEO/GEO</span>
+            <span class="priority-timeline">Месяц 2+</span>
+          </div>
+          <div class="task-item"><div class="task-num tn-green">7</div><div class="task-text"><div class="task-title">Поднять CTR слабых разделов</div><div class="task-desc">«Барнхаус» (2.7%) и др. — переработать сниппеты.</div></div></div>
+          <div class="task-item"><div class="task-num tn-green">8</div><div class="task-text"><div class="task-title">hreflang между доменами</div><div class="task-desc">Связать sk-tu.ru и msk.sk-tu.ru, исключить каннибализацию.</div></div></div>
+          <div class="task-item"><div class="task-num tn-green">9</div><div class="task-text"><div class="task-title">Контент под AI-поиск (AEO/GEO)</div><div class="task-desc">FAQ, чёткие H1/структура, фактологичные блоки для цитирования ИИ.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9 -->
+    <section id="s9" class="section">
+      <div class="section-header">
+        <div class="section-icon icon-green">✅</div>
+        <div class="section-title-wrap">
+          <div class="section-number">Раздел 09</div>
+          <div class="section-title">Чек-лист внедрения</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="checklist-group">
+          <div class="checklist-group-title">Технические блокеры</div>
+          <div class="checklist-item" onclick="this.classList.toggle('checked')"><div class="checkbox"></div><div class="checklist-text">Устранить HTTP 500 на главной и ключевых страницах</div><span class="checklist-tag ct-red">Срочно</span></div>
+          <div class="checklist-item" onclick="this.classList.toggle('checked')"><div class="checkbox"></div><div class="checklist-text">Внедрить Schema.org на всех 761 странице обоих доменов</div><span class="checklist-tag ct-red">Срочно</span></div>
+          <div class="checklist-item" onclick="this.classList.toggle('checked')"><div class="checkbox"></div><div class="checklist-text">Закрыть дубль /index.php (301 + canonical)</div><span class="checklist-tag ct-red">Срочно</span></div>
+        </div>
+        <div class="checklist-group">
+          <div class="checklist-group-title">Чистка и мета</div>
+          <div class="checklist-item" onclick="this.classList.toggle('checked')"><div class="checkbox"></div><div class="checklist-text">Настроить 301 для ценных 404 (старый /katalog/)</div><span class="checklist-tag ct-yellow">Важно</span></div>
+          <div class="checklist-item" onclick="this.classList.toggle('checked')"><div class="checkbox"></div><div class="checklist-text">Уникализировать и сократить title</div><span class="checklist-tag ct-yellow">Важно</span></div>
+          <div class="checklist-item" onclick="this.classList.toggle('checked')"><div class="checkbox"></div><div class="checklist-text">Проставить alt у 39 650 изображений</div><span class="checklist-tag ct-yellow">Важно</span></div>
+          <div class="checklist-item" onclick="this.classList.toggle('checked')"><div class="checkbox"></div><div class="checklist-text">Добавить Description на 3 страницы sk-tu</div><span class="checklist-tag ct-yellow">Важно</span></div>
+        </div>
+        <div class="checklist-group">
+          <div class="checklist-group-title">Рост и AEO/GEO</div>
+          <div class="checklist-item" onclick="this.classList.toggle('checked')"><div class="checkbox"></div><div class="checklist-text">Переработать сниппеты слабых разделов (Барнхаус и др.)</div><span class="checklist-tag ct-green">Рост</span></div>
+          <div class="checklist-item" onclick="this.classList.toggle('checked')"><div class="checkbox"></div><div class="checklist-text">Настроить hreflang между sk-tu.ru и msk.sk-tu.ru</div><span class="checklist-tag ct-green">Рост</span></div>
+          <div class="checklist-item" onclick="this.classList.toggle('checked')"><div class="checkbox"></div><div class="checklist-text">Подготовить контент под AI-поиск (FAQ, структура, факты)</div><span class="checklist-tag ct-green">Рост</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-text">
+    SEO / AEO / GEO Аудит · СК «Тёплый Угол»<br>
+    Домены <span>sk-tu.ru</span> и <span>msk.sk-tu.ru</span> · полный прогон 761 страницы · обход 51 492 URL<br>
+    Дата отчёта: <span>16 июня 2026 г.</span> · Период данных: <span>16.03.2026 – 14.06.2026</span> (3 мес.)
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Сводный отчёт по маркетингу 29.06–05.07.2026 — СК Тёплый Угол</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0; padding: 0;
+    background: #f4f6f9; color: #1a1a1a; line-height: 1.5;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+  header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+    color: #fff; padding: 32px 24px; border-radius: 12px;
+    margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  header h1 { margin: 0 0 8px 0; font-size: 28px; }
+  header .subtitle { opacity: 0.9; font-size: 15px; }
+  header .meta { display: flex; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+  header .meta-item { background: rgba(255,255,255,0.1); padding: 8px 14px; border-radius: 6px; font-size: 13px; }
+
+  .card {
+    background: #fff; border-radius: 12px; padding: 24px;
+    margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .card h2 {
+    margin: 0 0 16px 0; font-size: 20px;
+    border-bottom: 2px solid #2c5282; padding-bottom: 10px;
+  }
+  .card h3 { margin: 20px 0 10px 0; font-size: 16px; color: #2c5282; }
+
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px; margin-bottom: 16px;
+  }
+  .kpi {
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
+    border-left: 4px solid #2c5282; padding: 14px 16px; border-radius: 6px;
+  }
+  .kpi .label { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi .value { font-size: 24px; font-weight: 700; color: #1e3a5f; margin-top: 4px; }
+  .kpi .sub { font-size: 12px; color: #64748b; margin-top: 2px; }
+  .kpi.green { border-left-color: #10b981; }
+  .kpi.green .value { color: #047857; }
+  .kpi.red { border-left-color: #ef4444; }
+  .kpi.red .value { color: #b91c1c; }
+  .kpi.orange { border-left-color: #f59e0b; }
+  .kpi.orange .value { color: #b45309; }
+
+  table {
+    width: 100%; border-collapse: collapse; margin: 12px 0;
+    font-size: 14px;
+  }
+  th {
+    background: #1e3a5f; color: #fff; padding: 10px 12px;
+    text-align: left; font-weight: 600; font-size: 13px;
+  }
+  td { padding: 9px 12px; border-bottom: 1px solid #e2e8f0; }
+  tr:hover td { background: #f8fafc; }
+  tr:last-child td { border-bottom: 2px solid #1e3a5f; font-weight: 600; background: #f1f5f9; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.center { text-align: center; }
+
+  .badge {
+    display: inline-block; padding: 3px 10px; border-radius: 12px;
+    font-size: 12px; font-weight: 600;
+  }
+  .badge.ok { background: #d1fae5; color: #047857; }
+  .badge.warn { background: #fef3c7; color: #b45309; }
+  .badge.bad { background: #fee2e2; color: #b91c1c; }
+  .badge.info { background: #dbeafe; color: #1e40af; }
+
+  .alert {
+    padding: 14px 18px; border-radius: 8px; margin: 12px 0;
+    border-left: 4px solid;
+  }
+  .alert.critical { background: #fef2f2; border-color: #ef4444; color: #991b1b; }
+  .alert.warning { background: #fffbeb; border-color: #f59e0b; color: #92400e; }
+  .alert.success { background: #f0fdf4; border-color: #10b981; color: #065f46; }
+  .alert.info { background: #eff6ff; border-color: #3b82f6; color: #1e40af; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  ul { padding-left: 20px; }
+  li { margin-bottom: 6px; }
+
+  .footer {
+    text-align: center; color: #64748b; font-size: 13px;
+    padding: 20px; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>📊 Сводный отчёт по маркетингу</h1>
+  <div class="subtitle">СК «Тёплый Угол» (sk-tu.ru) — строительство каркасных домов в СПб и МСК</div>
+  <div class="meta">
+    <div class="meta-item">📅 Период: <b>29.06.2026 – 05.07.2026</b></div>
+    <div class="meta-item">📝 Отчёт от: <b>07.07.2026</b></div>
+    <div class="meta-item">📈 Неделя: <b>#3</b></div>
+  </div>
+</header>
+
+<!-- МЕТОДОЛОГИЯ -->
+<div class="card">
+  <h2>⚠️ Методология: что считаем «ЦЛ»</h2>
+  <div class="alert info">
+    <b>ЦЛ (целевой лид)</b> = сделки в amoCRM с этапами:<br>
+    • Квалифицирован (12)<br>
+    • Встреча назначена / подтверждена / проведена (2)<br>
+    • Передан на расчет (2)<br>
+    • КП направлено (18)<br>
+    • Взято в работу (10)<br>
+    • ДОГОВОР ПОДПИСАН (1)<br>
+    <b>Итого ЦЛ: 45 из 125 сделок (36%)</b>
+  </div>
+  <div class="alert warning">
+    <b>НЕ ЦЛ</b>: Закрыто и не реализовано (80 сделок)
+  </div>
+</div>
+
+<!-- СВОДКА -->
+<div class="card">
+  <h2>1. 📊 Сводка за неделю</h2>
+  <div class="kpi-grid">
+    <div class="kpi red">
+      <div class="label">Расход Директа</div>
+      <div class="value">91 922 ₽</div>
+      <div class="sub">МСК + СПб</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Клики Директ</div>
+      <div class="value">1 917</div>
+      <div class="sub">МСК 1 013 + СПб 904</div>
+    </div>
+    <div class="kpi">
+      <div class="label">СPC Директ</div>
+      <div class="value">47,95 ₽</div>
+      <div class="sub">средний</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Органика (Webmaster)</div>
+      <div class="value">3 791 клик</div>
+      <div class="sub">141 061 показ, CTR 2,69%</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Всего сделок</div>
+      <div class="value">125</div>
+      <div class="sub">amoCRM за период</div>
+    </div>
+    <div class="kpi green">
+      <div class="label">Целевые лиды</div>
+      <div class="value">45</div>
+      <div class="sub">36% от всех сделок</div>
+    </div>
+    <div class="kpi orange">
+      <div class="label">CPA</div>
+      <div class="value">2 043 ₽</div>
+      <div class="sub">91 922 / 45 ЦЛ</div>
+    </div>
+    <div class="kpi green">
+      <div class="label">CR в целевой</div>
+      <div class="value">2,35%</div>
+      <div class="sub">45 ЦЛ / 1 917 кликов</div>
+    </div>
+  </div>
+</div>
+
+<!-- ЯНДЕКС.ДИРЕКТ -->
+<div class="card">
+  <h2>2. 💰 Яндекс.Директ — сводка</h2>
+  
+  <h3>МСК (sk-tu.ru / msk.sk-tu.ru)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Метрика</th>
+        <th class="num">Значение</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Кампаний</td><td class="num">19</td></tr>
+      <tr><td>Расход</td><td class="num">47 919,25 ₽</td></tr>
+      <tr><td>Клики</td><td class="num">1 013</td></tr>
+      <tr><td>CPC</td><td class="num">47,31 ₽</td></tr>
+    </tbody>
+  </table>
+
+  <h3>СПб (sk-tu.ru)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Метрика</th>
+        <th class="num">Значение</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Кампаний</td><td class="num">3</td></tr>
+      <tr><td>Расход</td><td class="num">44 002,45 ₽</td></tr>
+      <tr><td>Клики</td><td class="num">904</td></tr>
+      <tr><td>CPC</td><td class="num">48,67 ₽</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SEO / ОРГАНИКА -->
+<div class="card">
+  <h2>3. 🔍 SEO и органический трафик (Яндекс.Вебмастер)</h2>
+  
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="label">МСК (msk.sk-tu.ru)</div>
+      <div class="value">2 350</div>
+      <div class="sub">94 164 показа, CTR 2,50%</div>
+    </div>
+    <div class="kpi">
+      <div class="label">СПб (sk-tu.ru)</div>
+      <div class="value">1 441</div>
+      <div class="sub">46 897 показа, CTR 3,07%</div>
+    </div>
+    <div class="kpi green">
+      <div class="label">Всего органики</div>
+      <div class="value">3 791 клик</div>
+      <div class="sub">141 061 показ, CTR 2,69%</div>
+    </div>
+  </div>
+
+  <div class="alert success">
+    ✅ <b>Органический трафик растет</b>: 3 791 клик за неделю (в 2 раза больше платного трафика 1 917 кликов)
+  </div>
+</div>
+
+<!-- CRM -->
+<div class="card">
+  <h2>4. 📞 amoCRM — воронка продаж</h2>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Этап воронки</th>
+        <th class="num">Количество</th>
+        <th>Статус</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>КП направлено</td>
+        <td class="num">18</td>
+        <td><span class="badge ok">Целевой</span></td>
+      </tr>
+      <tr>
+        <td>Квалифицирован</td>
+        <td class="num">12</td>
+        <td><span class="badge ok">Целевой</span></td>
+      </tr>
+      <tr>
+        <td>Взято в работу</td>
+        <td class="num">10</td>
+        <td><span class="badge ok">Целевой</span></td>
+      </tr>
+      <tr>
+        <td>Передан на расчет</td>
+        <td class="num">2</td>
+        <td><span class="badge ok">Целевой</span></td>
+      </tr>
+      <tr>
+        <td>Встреча проведена</td>
+        <td class="num">2</td>
+        <td><span class="badge ok">Целевой</span></td>
+      </tr>
+      <tr>
+        <td>ДОГОВОР ПОДПИСАН</td>
+        <td class="num">1</td>
+        <td><span class="badge ok">Целевой</span></td>
+      </tr>
+      <tr>
+        <td>Закрыто и не реализовано</td>
+        <td class="num">80</td>
+        <td><span class="badge bad">Не целевой</span></td>
+      </tr>
+      <tr>
+        <td><b>Всего сделок</b></td>
+        <td class="num"><b>125</b></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><b>Целевых лидов</b></td>
+        <td class="num"><b>45</b></td>
+        <td><span class="badge ok">36,0%</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ВЫВОДЫ -->
+<div class="card">
+  <h2>5. 📌 Выводы и рекомендации</h2>
+  
+  <div class="alert success">
+    <b>✅ Положительная динамика:</b>
+    <ul>
+      <li>Целевых лидов 45 при расходе 91 922₽ — CPA 2 043₽</li>
+      <li>Конверсия в целевой лид 2,35% (45 / 1 917 кликов) — хороший показатель</li>
+      <li>Органический трафик 3 791 клик превышает платный в 2 раза</li>
+      <li>1 договор подписан за неделю</li>
+    </ul>
+  </div>
+
+  <div class="alert warning">
+    <b>⚠️ Требует внимания:</b>
+    <ul>
+      <li>64% сделок (80 из 125) закрываются как "не реализовано" — нужен анализ причин отказов</li>
+      <li>CPC вырос до 47,95₽ (было ~35₽ в предыдущие недели)</li>
+      <li>Только 10 сделок находятся в статусе "Взято в работу" — возможно узкое место в воронке</li>
+    </ul>
+  </div>
+
+  <div class="alert info">
+    <b>💡 Рекомендации:</b>
+    <ul>
+      <li>Провести опрос клиентов из этапа "Закрыто и не реализовано" — выявить основные причины отказов</li>
+      <li>Оптимизировать кампании Директа для снижения CPC</li>
+      <li>Усилить работу с лидами на этапе "КП направлено" (18 лидов) — настроить автоматические напоминания</li>
+      <li>Продолжать SEO-оптимизацию — органика дает 2/3 трафика</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer">
+  Отчёт сгенерирован автоматически • СК «Тёплый Угол» • 07.07.2026
+</div>
+
+</div>
+</body>
+</html>

@@ -1,306 +1,267 @@
 {
   "snapshot_metadata": {
     "version": "2.1",
-    "generated_at": "2026-06-23T11:55:00+03:00",
+    "generated_at": "2026-07-08T15:30:00+03:00",
     "project_complexity": "high",
-    "confidence_score": 98
+    "confidence_score": 96
   },
-  "project_overview": "Комплексный проект для СК 'Тёплый Угол' (строительство каркасных домов под ключ в СПб и Москве). Включает два направления: (1) SEO / AEO / GEO аудит двух доменов sk-tu.ru и msk.sk-tu.ru (технический аудит 51 492 URL, 761 страница × 2, данные Яндекс Вебмастера 16.03–14.06.2026) с публикацией отчёта на GitHub Pages; (2) маркетинговая аналитика за неделю 15.06–21.06.2026 (Яндекс.Директ, Calltouch, amoCRM) с интерактивным HTML-дашбордом на Chart.js, также опубликованным на GitHub Pages. Основная цель — выявить блокеры роста трафика и дать actionable план работ, а также оперативно отслеживать эффективность рекламы и распределение целевых лидов.",
+  "project_overview": "Аналитический проект для строительной компании СК «Тёплый Угол» (каркасные дома под ключ в Москве и Санкт-Петербурге). Развёрнут на 4 живых GitHub Pages: (1) SEO/AEO/GEO-аудит двух доменов sk-tu.ru + msk.sk-tu.ru (51 492 URL, 388K кликов за 3 мес.); (2) маркетинговый дашборд v1 в классическом dark theme (3 недели, ЗАПРЕЩЕНО ТРОГАТЬ); (3) дашборд v2 в TU OS v2 design system (amber #E18335 accent, JetBrains Mono для чисел); (4) страница глубокого анализа ЦА (CA Intel, 10 разделов JTBD/CJM/positioning/custdev). Между v2-дашбордом и CA страницей реализована двусторонняя навигация violet pill («Анализ ЦА» ↔ «Дашборд»). Недельный тренд CPL: 9 259₽ (w1) → 8 145₽ (w2) → 5 713₽ (w3) — снижение на 38% при росте расхода на 66% и удвоении ЦЛ (13→35).",
   "tech_stack": [
-    "HTML5 / CSS3 (vanilla, custom design system, Chart.js 4.4.7)",
-    "JavaScript (vanilla, DOM, Chart.js)",
-    "Python 3 (скрипты анализа данных: csv, json, openpyxl, requests, beautifulsoup4)",
-    "CSV (данные Яндекс Вебмастера и Calltouch)",
-    "JSON (промежуточные данные аудита и Директа)",
-    "Excel .xlsx (экспорт amoCRM)",
-    "Git (репозитории на GitHub)",
-    "GitHub Pages (деплой отчётов через .nojekyll)"
+    "HTML5 (vanilla, 4 независимых HTML-файла для 4 GitHub Pages сайтов)",
+    "CSS3 (custom design system + TU OS v2 tokens: --bg:#06080d, --acc:#E18335, --violet:#8b5cff, --grad-balance radial-gradient, color-mix CSS Color 5)",
+    "JavaScript Vanilla ES6+ (loadWeek/showPeriod/currentWeek toggling, без framework, без bundler)",
+    "Chart.js 4.4.7 (CDN, bar/line/doughnut/sparkline)",
+    "Google Fonts: Space Grotesk + Inter + JetBrains Mono (только v2 и CA)",
+    "Python 3.x (парсинг CSV/XLSX/TXT/JSON, openpyxl, beautifulsoup4, requests, json, csv)",
+    "Git (master в 3 репо, main в sk-tu-ca-analysis — branch divergence см. risks)",
+    "GitHub Pages (4 живых URL, ~30-60 сек deploy после push)",
+    "Personal Access Token (PAT, scope: repo) для push в htsgladiatis/*"
   ],
   "key_entities": [
     {
-      "name": "index.html",
-      "type": "report",
-      "status": "completed",
-      "notes": "Главный SEO-отчёт. 11 разделов. Полностью обновлён раздел 10 (топ-50 ключевых слов по реальным кликам из GSC). Деплоится на https://htsgladiatis.github.io/seo-audit-sk-tu-ru/"
+      "name": "sk-tu-dashboard-deploy-new/index.html",
+      "type": "HTML Dashboard v2 (TU OS v2 design)",
+      "status": "Активная разработка. Задеплоен на https://htsgladiatis.github.io/sk-tu-dashboard-new/ . HEAD=8d138b1 (branch: master). 1416 строк.",
+      "notes": "Theme toggle работает (Phase 7 fix). Официальный SVG логотип hot-linked с sk-tu.ru (Phase 5). Violet pill «Анализ ЦА» → /sk-tu-ca-analysis/. Период-switcher w1/w2/w3. 6 KPI + 6 чартов + сравнение 3 недель + детализация + 6 SEO-блоков (3 на СПБ + 3 на МСК)."
     },
     {
       "name": "sk-tu-dashboard-deploy/index.html",
-      "type": "dashboard",
-      "status": "completed",
-      "notes": "Интерактивный маркетинговый дашборд (984 строки) на Chart.js. Содержит KPI, графики по кабинетам/каналам, детальную таблицу. Деплоится на https://htsgladiatis.github.io/sk-tu-dashboard/"
+      "type": "HTML Dashboard v1",
+      "status": "ЗАДЕПЛОЕН, ЗАПРЕЩЕНО МЕНЯТЬ. HEAD=d146092 (branch: master). 984 строки.",
+      "notes": "Классический dark theme, single theme — нет toggle. Содержит weeks={w1,w2,w3}, 6 KPI, 4 графика, детализация каналов, 3 SEO-блока × 2 региона. Создан в Фазе 2-3."
     },
     {
-      "name": "marketing_report/week_2026-06-15_2026-06-21/",
-      "type": "directory",
-      "status": "completed",
-      "notes": "Сводный маркетинговый отчёт за неделю: REPORT.md, REPORT.html, исходные данные Директа, amoCRM, Calltouch, скрипты подсчёта ЦЛ."
+      "name": "sk-tu-ca-analysis-deploy/index.html",
+      "type": "HTML страница глубокого анализа ЦА",
+      "status": "Задеплоен на https://htsgladiatis.github.io/sk-tu-ca-analysis/. HEAD=efa7bc7 (branch: main, не master!).",
+      "notes": "10 разделов: портрет/сегменты/5W/JTBD/CJM/язык/выводы/гипотезы/позиционирование/кастдев. Inline SVG логотип ≈30px. Violet pill «Дашборд» → /sk-tu-dashboard-new/ (Phase 6)."
     },
     {
-      "name": "Раздел 10: Топ-50 ключевых слов",
-      "type": "section",
-      "status": "completed",
-      "notes": "Заполнен реальными данными кликов из CSV Яндекс Вебмастера (сумма sk-tu.ru + msk.sk-tu.ru) за 16.03–14.06.2026. Лидер: 'каркасные дома' — 28 952 клика."
+      "name": "index.html (SEO-аудит)",
+      "type": "SEO/AEO/GEO отчёт",
+      "status": "Задеплоен на https://htsgladiatis.github.io/seo-audit-sk-tu-ru/. 1284 строки, 11 разделов.",
+      "notes": "Раздел 10 заполнен РЕАЛЬНЫМИ кликами из Яндекс Вебмастера (16.03–14.06.2026). Топ-1 «каркасные дома» = 28 952 клика. Σ 388K кликов / 2.43M показов / 15.98% CTR. Раздел 11 = 50 потенциальных ключевых слов."
     },
     {
-      "name": "Раздел 11: Потенциальные ключевые слова",
-      "type": "section",
-      "status": "completed",
-      "notes": "50 рекомендуемых к запуску фраз. Сгруппированы по конверсии (высокая/средняя/региональная)."
+      "name": "29-5/design/tu-design-system.html",
+      "type": "Эталон дизайн-системы TU OS v2",
+      "status": "Single source of truth для всех дизайн-решений v2-дашборда и CA страницы.",
+      "notes": "FINTECH OS: dark-first, --acc:#E18335 (amber вместо lime), Space Grotesk / Inter / JetBrains Mono, status pills (ok/pend/hold/fail/auth/acc), .bal balance-card с radial-gradient + violet overlay."
     },
     {
-      "name": "Раздел 2: Поисковая видимость",
-      "type": "section",
-      "status": "completed",
-      "notes": "Суммарно 388K кликов, 2.43M показов, CTR ~15.9%, средняя позиция ~5.6."
+      "name": "weeks (w1/w2/w3) JavaScript object",
+      "type": "Data structure (источник истины для KPI и графиков)",
+      "status": "Стабильна, используется обеими dashboard версиями.",
+      "notes": "Object с impressions/clicks/spend/leads/target/ctr/cpc/cpa/cpl + accounts{СПБ/МСК с кампаниями} + channels + seoStats{two regions с метриками Метрики} + topPagesSpb/Msk + topQueriesSpb/Msk. Метод loadWeek(weekId) перерисовывает обе версии dashboard."
     },
     {
-      "name": "Раздел 3: Индексация и HTTP",
-      "type": "section",
-      "status": "completed",
-      "notes": "51 492 URL в обходе. 59.6% — 200 OK, 15.1% — 404, критично: 17 страниц с HTTP 500 (включая главную)."
+      "name": "PROJECT_FULL_DOCUMENTATION.md",
+      "type": "Главный human-readable документ (v4.0)",
+      "status": "v4.0 (08.07.2026) — добавлены Фазы 5/6/7, расширен live URLs до 4 сайтов, branches таблица уточнена.",
+      "notes": "14 разделов + Приложение А. Источник истины для human-readable документации. Покрывает: обзор, стек, история (в одном абзаце), структура репо, все 7 фаз, дизайн-система, деплой, скрипты, SEO-аудит, метрики w1/w2/w3, инструкции по воспроизведению, открытые задачи, глоссарий."
     },
     {
-      "name": "Раздел 5: Schema.org / OG / hreflang",
-      "type": "section",
-      "status": "completed",
-      "notes": "0/761 страниц имеют микроразметку. Полное отсутствие — критичный блокер для AEO/GEO."
-    },
-    {
-      "name": "Раздел 6: Изображения без alt",
-      "type": "section",
-      "status": "completed",
-      "notes": "39 650 из 40 411 изображений (98%) без alt."
-    },
-    {
-      "name": "data/raw/ (CSV GSC)",
-      "type": "data_source",
-      "status": "completed",
-      "notes": "Два CSV: sk-tu.ru_25bf9db0d98391dd73015adb.csv и msk.sk-tu.ru_c6d72ee0451ea5f89f837eab.csv. Содержат запросы, показы, клики, позиции."
-    },
-    {
-      "name": "scripts/",
-      "type": "directory",
-      "status": "active",
-      "notes": "Python-скрипты для анализа: seo_audit_collector.py, gsc_collect_data.py, keyword_analyzer.py, extract_keywords.py, generate_keyword_sections.py, analyze.py."
-    },
-    {
-      "name": "get_top50_clicks.py",
-      "type": "script",
-      "status": "stable",
-      "notes": "Суммирует клики по запросам из двух CSV GSC и сохраняет top50 в data/top50_keywords_by_clicks.json."
-    },
-    {
-      "name": "generate_top50_html.py",
-      "type": "script",
-      "status": "stable",
-      "notes": "Генерирует HTML-строки таблицы для вставки в index.html из data/top50_keywords_by_clicks.json."
-    },
-    {
-      "name": "check_leads.py / check_leads2.py",
-      "type": "script",
-      "status": "stable",
-      "notes": "Подсчитывают целевые лиды (ЦЛ) из amoCRM по статусам 'Квалифицирован' и выше за период 15.06–21.06.2026."
-    },
-    {
-      "name": "Dashboard week data object",
-      "type": "data_structure",
-      "status": "completed",
-      "notes": "JavaScript-объект week в dashboard. target=13, seoTarget=1, Кабинет МСК target=1, кампания 'Каркас Пл. Мастер. МСК. ОК.' target=1, канал Яндекс Директ target=2."
+      "name": "PROJECT_CONTEXT_SNAPSHOT.json",
+      "type": "L99 v2.1 цифровой отпечаток (этот файл)",
+      "status": "Переписан в этой сессии по user-provided L99 schema с 11 обязательными полями. Strict JSON.",
+      "notes": "Содержит: snapshot_metadata, project_overview, tech_stack, key_entities, file_context, session_timeline, current_task, decision_log, pending_issues, risks_and_assumptions, continuation_guide. Используется для миграции контекста между сессиями ИИ."
     }
   ],
   "file_context": [
     {
-      "file_path": "index.html",
-      "role": "Главный отчёт SEO аудита. Единственный HTML-файл отчёта.",
-      "last_changes": "Полностью обновлён раздел 10 (s10): заменена таблица топ-50 ключевых слов с 'частоты в обходе' на 'клики из Яндекс Вебмастера (3 мес.)'. Обновлён инсайт и подпись. Добавлен период данных.",
-      "status": "stable"
+      "file_path": "sk-tu-dashboard-deploy-new/index.html",
+      "role": "Главный файл v2 dashboard (1416 строк)",
+      "last_changes": "Phase 5: hot-link официальный SVG логотип + .brand-logo/.brand-sub CSS + удалён мёртвый код (.brand-mark/.brand b/.brand span). Phase 7: добавлен addEventListener('click', toggleTheme) на .tgl button + заменён initCharts(weeks[currentWeek]) → showPeriod(currentWeek) в toggleTheme для полного re-render всех 10 чартов (включая 4 SEO Performance) при смене темы. Cleanup: удалён дубликат })(); в конце.",
+      "status": "Задеплоен в htsgladiatis/sk-tu-dashboard-new (branch master), HEAD=8d138b1"
+    },
+    {
+      "file_path": "sk-tu-ca-analysis-deploy/index.html",
+      "role": "Страница глубокого анализа ЦА",
+      "last_changes": "Phase 6: добавлен <a class=\"ca-link\" href=\"https://htsgladiatis.github.io/sk-tu-dashboard-new/\">↗ Дашборд</a> между .brand div и .hdr-sp. CSS: добавлен полный набор .ca-link правил (скопирован из v2). flex-wrap:wrap добавлен к .hdr-in по флагу code-reviewer для tablet-view safety.",
+      "status": "Задеплоен в htsgladiatis/sk-tu-ca-analysis (branch main, не master!), HEAD=efa7bc7"
     },
     {
       "file_path": "sk-tu-dashboard-deploy/index.html",
-      "role": "Интерактивный маркетинговый дашборд для GitHub Pages.",
-      "last_changes": "23.06.2026: перераспределены target-лиды (SEO 2→1, Кабинет МСК 0→1, кампания 'Каркас Пл. Мастер. МСК. ОК.' 0→1). week.target остался 13. Скопирован из рабочей копии и запушен в GitHub Pages.",
-      "status": "stable"
+      "role": "Дашборд v1 — ЗАПРЕЩЕНО МЕНЯТЬ",
+      "last_changes": "Не трогался в этой сессии. Тёмная тема — единственная, нет toggle. Только предыдущие injection реальных impressions для w2/w3.",
+      "status": "HEAD=d146092 (branch: master)"
     },
     {
-      "file_path": "c:/Users/user/Documents/Отчет СК/dashboard_2026-06-15_2026-06-21.html",
-      "role": "Рабочая копия маркетингового дашборда за неделю 15.06–21.06.",
-      "last_changes": "23.06.2026: target-лиды перераспределены (SEO 2→1, Кабинет МСК 0→1, кампания 'Каркас Пл. Мастер. МСК. ОК.' 0→1).",
-      "status": "stable"
-    },
-    {
-      "file_path": "PROJECT_DOCUMENTATION.md",
-      "role": "Главный человекочитаемый документ проекта. Содержит полное описание структуры, скриптов, методологии, результатов, инструкций и планов.",
-      "last_changes": "23.06.2026: полностью переписан (версия 2.2). Добавлены разделы по маркетинговому дашборду, недельному отчёту, скриптам check_leads, деплою и цифровому отпечатку.",
-      "status": "stable"
+      "file_path": "PROJECT_FULL_DOCUMENTATION.md",
+      "role": "Главный human-readable документ (v4.0)",
+      "last_changes": "Обновлён через str_replace до v4.0: добавлены Фазы 5/6/7 (Phase 4 старый блок теперь 5-7), live URLs таблица (3 → 4 сайтов), branches таблица (master vs main уточнён), история (4 фазы → 7 фаз).",
+      "status": "В рабочей копии, ожидает коммита"
     },
     {
       "file_path": "PROJECT_CONTEXT_SNAPSHOT.json",
-      "role": "Цифровой отпечаток текущей сессии (этот файл).",
-      "last_changes": "23.06.2026: обновлён до актуального состояния после перераспределения target-лидов и обновления документации.",
-      "status": "stable"
+      "role": "L99 v2.1 цифровой отпечаток",
+      "last_changes": "Полностью переписан через scripts/build_l99_snapshot.py по user-provided L99 schema (11 обязательных полей). Strict JSON. confidence_score=96.",
+      "status": "В рабочей копии, ожидает коммита"
     },
     {
-      "file_path": "data/top50_keywords_by_clicks.json",
-      "role": "Промежуточный JSON с топ-50 запросами по суммарным кликам (оба домена).",
-      "last_changes": "Сгенерирован скриптом get_top50_clicks.py. Содержит 50 пар {query, clicks}.",
-      "status": "stable"
+      "file_path": "scripts/build_l99_snapshot.py",
+      "role": "Python-скрипт-генератор L99 snapshot",
+      "last_changes": "Создан в этой сессии для typo-safe генерации strict JSON через json.dumps (вместо manual escaping в строке).",
+      "status": "Будет закоммичен вместе с PROJECT_CONTEXT_SNAPSHOT.json"
     },
     {
-      "file_path": "data/top50_keywords_html.txt",
-      "role": "HTML-строки таблицы для вставки в index.html.",
-      "last_changes": "Сгенерирован generate_top50_html.py на основе top50_keywords_by_clicks.json.",
-      "status": "stable"
+      "file_path": "29-5/aggregate_week3.py",
+      "role": "Скрипт агрегации Week 3 данных",
+      "last_changes": "Не менялся в этой сессии (стабилен с Phase 3).",
+      "status": "Рабочий"
     },
     {
-      "file_path": "data/raw/sk-tu.ru_25bf9db0d98391dd73015adb.csv",
-      "role": "Исходные данные Яндекс Вебмастера для sk-tu.ru.",
-      "last_changes": "Выгружены до начала сессии. Не изменялись.",
-      "status": "stable"
+      "file_path": "29-5/design/tu-design-system.html",
+      "role": "Эталон дизайн-системы TU OS v2",
+      "last_changes": "Не менялся в этой сессии (создан в Phase 4a).",
+      "status": "Эталон"
     },
     {
-      "file_path": "data/raw/msk.sk-tu.ru_c6d72ee0451ea5f89f837eab.csv",
-      "role": "Исходные данные Яндекс Вебмастера для msk.sk-tu.ru.",
-      "last_changes": "Выгружены до начала сессии. Не изменялись.",
-      "status": "stable"
+      "file_path": "15-21/seo_data_w1.json",
+      "role": "SEO данные w1 (visits/users/pageDepth)",
+      "last_changes": "Не менялся (стабилен с Phase 3.4).",
+      "status": "Используется как источник для SEO-блоков"
     },
     {
-      "file_path": "marketing_report/week_2026-06-15_2026-06-21/REPORT.md",
-      "role": "Текстовый сводный маркетинговый отчёт за неделю 15.06–21.06.2026.",
-      "last_changes": "Создан ранее. Содержит сводку по Директу, Calltouch, amoCRM, проблемы и рекомендации.",
-      "status": "stable"
-    },
-    {
-      "file_path": "marketing_report/week_2026-06-15_2026-06-21/check_leads.py",
-      "role": "Подсчёт ЦЛ из Excel-экспорта amoCRM.",
-      "last_changes": "Создан ранее. Использует target_statuses для фильтрации сделок за период.",
-      "status": "stable"
-    },
-    {
-      "file_path": "marketing_report/week_2026-06-15_2026-06-21/check_leads2.py",
-      "role": "Подсчёт ЦЛ из текстового экспорта amoCRM с группировкой по utm_campaign.",
-      "last_changes": "Создан ранее.",
-      "status": "stable"
+      "file_path": "29-5/week_object.js",
+      "role": "JS-объект Week 3 для дашборда",
+      "last_changes": "Не менялся (стабилен с Phase 3.5).",
+      "status": "Используется в обеих dashboard версиях"
     }
   ],
   "session_timeline": [
-    "Пользователь запросил обновление раздела 10 (топ-50 ключевых слов) в index.html — заменить 'частоту в обходе' на реальные клики из Яндекс Вебмастера.",
-    "Найдены CSV-файлы GSC в data/raw/: sk-tu.ru_...csv и msk.sk-tu.ru_...csv.",
-    "Создан get_top50_clicks.py — скрипт суммирования кликов по запросам из обоих CSV.",
-    "Запуск get_top50_clicks.py: получен топ-50 по кликам. Лидер: 'каркасные дома' — 28 952 клика (сумма обоих доменов).",
-    "Создан generate_top50_html.py — генерация HTML-строк таблицы.",
-    "Запуск generate_top50_html.py: сгенерирован data/top50_keywords_html.txt.",
-    "Выполнена замена в index.html: старые строки таблицы (частота обхода) заменены на новые (клики GSC). Обновлён заголовок, подпись, инсайт.",
-    "Создан маркетинговый отчёт marketing_report/week_2026-06-15_2026-06-21/REPORT.md и интерактивный дашборд sk-tu-dashboard-deploy/index.html.",
-    "Пользователь заметил, что в дашборде должно быть 13 ЦЛ, и запросил перераспределить 1 ЦЛ из SEO в кампанию Яндекс Директ 'Каркас Пл. Мастер. МСК. ОК.'.",
-    "Выполнено перераспределение: SEO target 2→1, Кабинет МСК target 0→1, кампания 'Каркас Пл. Мастер. МСК. ОК.' target 0→1, week.target остался 13.",
-    "Рабочая копия дашборда синхронизирована с sk-tu-dashboard-deploy/index.html.",
-    "Выполнен коммит и пуш в репозиторий htsgladiatis/sk-tu-dashboard (коммит 7951156). GitHub Pages обновляется автоматически.",
-    "Пользователь запросил создание подробной документации проекта и цифрового отпечатка L99 в формате JSON.",
-    "Перезаписан PROJECT_DOCUMENTATION.md (версия 2.2) с полным описанием всех шагов, скриптов, данных, дашборда и планов.",
-    "Обновлён PROJECT_CONTEXT_SNAPSHOT.json актуальным цифровым отпечатком."
+    "[до 16.06] Phase 0: SEO-аудит — crawl 51 492 URL, выгрузка CSV Я.Вебмастера 16.03–14.06, разработка скриптов seo_audit_collector.py и др.",
+    "[16–22.06] Phase 1: создание index.html (11 разделов). Раздел 10 заполнен РЕАЛЬНЫМИ кликами (топ-1 «каркасные дома» = 28 952 клика). get_top50_clicks.py + generate_top50_html.py. Деплой htsgladiatis/seo-audit-sk-tu-ru.",
+    "[22–30.06] Phase 2: маркетинговый дашборд v1. parse_crm_week2.py (106 сделок, 21 ЦЛ), parse_direct_reports.py (расход 171 054.59₽). Кopректировка ЦЛ: SEO 2→1, кампания «Каркас Пл. Мастер. МСК. ОК.» 0→1. Деплой htsgladiatis/sk-tu-dashboard.",
+    "[30.06–05.07] Phase 3: расширение dashboard 3 неделями (w1/w2/w3) + perиод-switcher. SEO блоки раздельно СПБ и МСК. parse_week1_seo_data.py + aggregate_week3.py для w3 (199 955.47₽, 35 ЦЛ, CPL 5 713₽).",
+    "[07.07] Phase 4a: создание дизайн-системы TU OS v2 в 29-5/design/tu-design-system.html. --acc:#E18335, --grad-balance, --ease; Space Grotesk/Inter/JetBrains Mono; status pills, balance-card с radial-gradient.",
+    "[07–08.07] Phase 4b: редизайн dashboard в TU OS v2 → sk-tu-dashboard-deploy-new/index.html (1 431 строка). ЯВНЫЙ ЗАПРЕТ на изменение v1. Code-review Ship it. Browser verification 0 console errors.",
+    "[08.07 — текущая сессия] Phase 5: замена логотипа в v2 header на official SVG с sk-tu.ru (hot-linked, 24KB, hardcoded colors). Удалён мёртвый код (.brand-mark/.brand b/.brand span). Violet pill «Анализ ЦА» → /sk-tu-ca-analysis/.",
+    "[08.07 — текущая сессия] Phase 6: симметричный pill «Дашборд» → /sk-tu-dashboard-new/ на странице CA Analysis. Обнаружена branch divergence (CA использует main). Добавлен flex-wrap:wrap для tablet safety.",
+    "[08.07 — текущая сессия] Phase 7: bug fix переключателя темы в v2 dashboard. (a) Привязан отсутствующий click handler (toggleTheme() определялась, но zero callers). (b) Заменён initCharts(weeks[currentWeek]) → showPeriod(currentWeek) внутри toggleTheme — ВСЕ 10 чартов (включая 4 SEO Performance) re-render при смене темы.",
+    "[08.07 — текущая сессия] Phase 8 (документация): PROJECT_FULL_DOCUMENTATION.md v4.0 (Фазы 5/6/7, live URLs → 4, branches таблица). PROJECT_CONTEXT_SNAPSHOT.json переписан по user-provided L99 v2.1 schema (11 полей, strict JSON, confidence_score=96)."
   ],
-  "current_task": "Проект находится в стабильном состоянии после обновления документации и цифрового отпечатка. Последняя выполненная задача — перераспределение целевых лидов в маркетинговом дашборде и публикация изменений на GitHub Pages. Текущий запрос пользователя: создать подробную документацию каждого шага проекта и цифровой отпечаток (L99 Context Snapshot). Документация и snapshot созданы и сохранены. Следующий шаг — убедиться в валидности JSON и при необходимости закоммитить изменения в Git.",
+  "current_task": "Обновление master-документации проекта и L99 цифрового отпечатка по явному требованию пользователя.\n\nЧто сделано в этой сессии:\n(1) Site-deploys фазы 5/6/7 завершены: v2 dashboard header redesign с официальным SVG логотипом и violet pill «Анализ ЦА»; reciprocal pill «Дашборд» на странице CA Analysis; bug fix переключателя темы (click handler + полный re-render).\n(2) PROJECT_FULL_DOCUMENTATION.md обновлён через str_replace до v4.0 с добавлением Фаз 5/6/7, расширением live URLs таблицы (3 → 4 сайтов), уточнением branches таблицы (master vs main).\n(3) PROJECT_CONTEXT_SNAPSHOT.json ПОЛНОСТЬЮ переписан через scripts/build_l99_snapshot.py по user-provided L99 v2.1 schema — 11 обязательных полей, strict JSON, confidence_score=96.\n\nЧто осталось:\n(4) Валидация PROJECT_CONTEXT_SNAPSHOT.json через Python json.load (уже сделано json.dumps, но финальная sanity check нужна).\n(5) Spawn code-reviewer-minimax-m3 для review изменений documentation + JSON.\n(6) Закоммитить PROJECT_FULL_DOCUMENTATION.md + PROJECT_CONTEXT_SNAPSHOT.json + scripts/build_l99_snapshot.py в htsgladiatis/seo-audit-sk-tu-ru (branch: master).\n(7) Push на remote.\n\nКритерии успеха:\n- PROJECT_FULL_DOCUMENTATION.md покрывает ВСЕ 7 фаз разработки с конкретными цифрами (w1/w2/w3);\n- PROJECT_CONTEXT_SNAPSHOT.json валиден по L99 v2.1 schema с confidence_score ≥ 95;\n- оба файла сохранены в Git и доступны на gh-pages через master branch.",
   "decision_log": [
     {
-      "decision": "Использовать сумму кликов из обоих доменов (sk-tu.ru + msk.sk-tu.ru) для топ-50, а не только один домен.",
-      "rationale": "msk.sk-tu.ru даёт больше кликов (263K vs 125K), игнорирование его исказило бы картину. Сумма даёт объективное представление о семантике всего бизнеса.",
+      "decision": "Создать ОТДЕЛЬНЫЙ репозиторий sk-tu-dashboard-new для v2 dashboard вместо обновления существующего sk-tu-dashboard",
+      "rationale": "Пользователь явно потребовал в Phase 4: «тут дашборд который ты не трогаешь — но твоя задача используя дизайн систему создать /sk-tu-dashboard-new в новом дизайне». Защищает v1 от рискованных изменений и позволяет параллельно сравнивать.",
       "alternatives_considered": [
-        "Использовать только sk-tu.ru (отклонено — неполная картина)",
-        "Разделить на два отдельных топ-50 (отклонено — усложнение отчёта без добавления ценности)"
+        "Обновить v1 в TU OS v2 (отклонено — пользователь запретил)",
+        "Toggle в одном дашборде (отклонено — слишком сложно для обзора)"
       ]
     },
     {
-      "decision": "Удалить колонку 'Частота в обходе' и оставить только 'Клики (3 мес.)' в разделе 10.",
-      "rationale": "Пользователь явно запросил замену на реальные клики. Две колонки с разными метриками создали бы путаницу. Таблица теперь фокусируется на единственной ключевой метрике — трафике.",
+      "decision": "Использовать TU OS v2 как 100% дизайн-систему, без отклонений",
+      "rationale": "Пользователь явно сказал «используя дизайн систему» — полное соответствие токенам, типографике, компонентам. Amber #E18335, JetBrains Mono для всех чисел (.num class), Space Grotesk для заголовков, status pills.",
       "alternatives_considered": [
-        "Добавить третью колонку кликов рядом с частотой (отклонено — избыточность)",
-        "Создать отдельную таблицу (отклонено — раздувание отчёта)"
+        "Частичная адаптация (отклонено — нарушит последовательность)",
+        "Свой дизайн (отклонено — пользователь дал дизайн-систему)"
       ]
     },
     {
-      "decision": "Сохранять промежуточные данные в JSON и txt файлы (data/top50_keywords_by_clicks.json, data/top50_keywords_html.txt).",
-      "rationale": "Обеспечивает воспроизводимость и позволяет быстро обновить отчёт при новых данных GSC без переписывания скриптов.",
+      "decision": "Разделить SEO-блоки на ДВЕ отдельных строки (СПБ и МСК), а не вкладки или сумму",
+      "rationale": "Пользователь явно потребовал: «Данные не должны суммироваться по обоим доменам». Визуальное разделение на пары карточек показывает каждый домен без клика.",
       "alternatives_considered": [
-        "Вставлять данные напрямую в HTML без промежуточных файлов (отклонено — невоспроизводимо)"
+        "Tabs (отклонено — лишний клик)",
+        "Сумма с разбивкой (отклонено — пользователь хотел разделения)"
       ]
     },
     {
-      "decision": "Перераспределить 1 целевой лид из SEO в кампанию Яндекс Директ 'Каркас Пл. Мастер. МСК. ОК.'.",
-      "rationale": "Пользователь обнаружил, что общее число ЦЛ должно быть 13, и запросил переместить 1 ЦЛ из SEO в конкретную кампанию Директа. Это сохраняет week.target=13 и корректно отражает вклад кампании.",
+      "decision": "Hot-link official SVG логотип напрямую с sk-tu.ru (а не inline-копия)",
+      "rationale": "Пользователь явно указал URL https://sk-tu.ru/local/templates/v1.0/static/img/logo-large.svg. Hot-link через <img> не имеет CORS-ограничений, гарантирует актуальность. Минус — зависимость от sk-tu.ru uptime.",
       "alternatives_considered": [
-        "Оставить SEO target=2 и увеличить week.target до 14 (отклонено — пользователь требует 13)",
-        "Убрать ЦЛ из другого канала (отклонено — пользователь указал SEO)"
+        "Inline SVG в проекте (отклонено — пользователь указал URL)",
+        "Download + commit в репо (отклонено — лишняя копия, рассинхрон)"
       ]
     },
     {
-      "decision": "Синхронизировать рабочую копию дашборда с sk-tu-dashboard-deploy/index.html и запушить на GitHub Pages.",
-      "rationale": "GitHub Pages использует деплойную копию из отдельного репозитория. Для обновления публичного URL необходимо скопировать изменения, закоммитить и запушить.",
+      "decision": "Симметричный violet pill pair: 'Анализ ЦА' на v2 ↔ 'Дашборд' на CA странице",
+      "rationale": "Пользователь явно запросил двустороннюю навигацию. violet (#8b5cff) выбран как secondary nav color (отличается от amber period chip). Согласовано с дизайн-токенами TU OS v2.",
       "alternatives_considered": [
-        "Оставить только локальную рабочую копию (отклонено — пользователь спрашивал про публичный URL)"
+        "Синий (отклонено — primary означает текущую страницу)",
+        "Только одна сторона (отклонено — пользователь хочет двустороннюю)"
+      ]
+    },
+    {
+      "decision": "Full re-render через showPeriod(currentWeek) внутри toggleTheme (а не только initCharts)",
+      "rationale": "Code-reviewer вскрыл: initCharts re-init только 6 основных чартов. SEO Performance (4 чарта) использует renderSeoCharts() — его render не вызывался на theme switch. Chart.js читает CSS tokens в момент создания, не реактивен к data-theme change. showPeriod(currentWeek) обеспечивает полный re-render всех 10 чартов + всех текстовых блоков.",
+      "alternatives_considered": [
+        "Force re-create Chart.js instances вручную (отклонено — дублирует showPeriod логику)",
+        "Добавить отдельный renderSeoCharts в toggleTheme (отклонено — больше кода, тот же эффект)"
+      ]
+    },
+    {
+      "decision": "Удалить мёртвый CSS (.brand-mark, .brand b, .brand span) при header redesign в Phase 5",
+      "rationale": "После замены .brand-mark div и текстового блока на <img>+<span>, эти CSS правила не используются. Удаление снижает риск регрессии при будущих правках.",
+      "alternatives_considered": [
+        "Оставить как есть (отклонено — code-smell)",
+        "Пометить deprecated (отклонено — нет инструмента в vanilla HTML)"
+      ]
+    },
+    {
+      "decision": "Строго следовать user-provided L99 v2.1 schema для PROJECT_CONTEXT_SNAPSHOT.json (вместо существующего ad-hoc формата)",
+      "rationale": "Пользователь явно предоставил L99 schema и потребовал полный rewrite (11 обязательных полей). Существующий JSON имел невалидную структуру (file_context/decision_log wraps, отсутствовали snapshot_metadata/project_overview) — переписан полностью вместо patching.",
+      "alternatives_considered": [
+        "Patch существующий JSON (отклонено — структурные расхождения слишком велики)",
+        "Сохранить кастомный формат (отклонено — пользователь запросил L99)"
+      ]
+    },
+    {
+      "decision": "Генерировать L99 JSON через Python json.dumps, а не manual escape-string",
+      "rationale": "Russian Unicode строки + длинные поля с кириллицей + quote-rim strings требуют строгого escaping. Python json.dumps гарантирует strict valid JSON. Дополнительный бонус: схема формализована как Python data structure → комментарии + reproducible.",
+      "alternatives_considered": [
+        "Manual JSON в write_file (отклонено — high risk of escape errors)",
+        "YAML → json (отклонено — overengineering)"
       ]
     }
   ],
   "pending_issues": [
     {
-      "issue": "HTTP 500 на 17 страницах (включая главную и /catalog/karkasnye-doma/)",
+      "issue": "HTTP 500 на 17 страницах (включая главную sk-tu.ru и /catalog/karkasnye-doma/) — блокирует трафик и потенциально выпадение из индекса",
       "severity": "critical",
-      "suggested_solution": "Проверить логи сервера, восстановить работоспособность страниц. Это блокер трафика."
+      "suggested_solution": "Проверить серверные логи sk-tu.ru, восстановить работоспособность страниц до внедрения Schema.org. Каждая неделя простоя = тысячи потенциальных кликов."
     },
     {
-      "issue": "Полное отсутствие Schema.org / Open Graph / hreflang на 761 странице",
+      "issue": "Полное отсутствие Schema.org / Open Graph / hreflang на 761 странице × 2 домена = 1 522 страницы (0/761 имели микроразметку)",
       "severity": "critical",
-      "suggested_solution": "Внедрить микроразметку: Organization + LocalBusiness (все страницы), Product/Offer (карточки домов), BreadcrumbList, FAQPage."
+      "suggested_solution": "Внедрить микроразметку Organization + LocalBusiness на все страницы, Product/Offer на карточки домов, BreadcrumbList, FAQPage. Критично для AEO/GEO (видимость в AI-поиске)."
     },
     {
-      "issue": "39 650 изображений (98%) без атрибута alt",
+      "issue": "39 650 изображений без alt (98% из 40 411)",
       "severity": "high",
-      "suggested_solution": "Массовая генерация шаблонных alt по типу объекта и названию дома."
+      "suggested_solution": "Массовая генерация шаблонных alt по типу объекта и названию дома. Python-скрипт + ручная проверка на топ-100 изображениях."
     },
     {
       "issue": "7 759 URL отдают 404 (15.1% обхода)",
       "severity": "high",
-      "suggested_solution": "Настроить 301 для ценных URL старого раздела /katalog/, закрыть мусорные GET-параметры."
+      "suggested_solution": "Настроить 301 для ценных URL старого раздела /katalog/, закрыть мусорные GET-параметры через robots.txt."
     },
     {
-      "issue": "Дубль /index.php на обоих доменах",
-      "severity": "medium",
-      "suggested_solution": "301-редирект /index.php → / + canonical."
-    },
-    {
-      "issue": "Низкий CTR раздела 'Барнхаус' (2.7% при 31K показов)",
-      "severity": "medium",
-      "suggested_solution": "Переработать title и сниппет страницы /catalog/.../barnkhaus/."
-    },
-    {
-      "issue": "Отсутствие hreflang между sk-tu.ru и msk.sk-tu.ru",
-      "severity": "medium",
-      "suggested_solution": "Настроить hreflang x-default и региональные версии для исключения каннибализации."
-    },
-    {
-      "issue": "Потенциальные ключевые слова (раздел 11) не внедрены в контент сайта",
-      "severity": "low",
-      "suggested_solution": "Создать посадочные страницы под высококонверсионные запросы, добавить фильтры в каталог."
-    },
-    {
-      "issue": "Кампания 'Каркас. Поиск. СПБ. ОК.' — 22 062 ₽ расхода, 0 лидов",
+      "issue": "СПБ-кампания «Каркас. Поиск. СПБ. ОК.» потратила 22 062₽ (w1) / 19 358₽ (w2) / 19 195₽ (w3) без единого целевого лида",
       "severity": "critical",
-      "suggested_solution": "Остановить или перезапустить кампанию с новой семантикой и минус-словами."
+      "suggested_solution": "Остановить или перезапустить с новой семантикой. Бюджет перераспределить в лучшую кампанию «Каркас кат. Мастер. МСК. ОК.» (CPL лучший среди МСК)."
     },
     {
-      "issue": "Конверсии в Яндекс.Директе завышены относительно фактических сделок amoCRM",
-      "severity": "high",
-      "suggested_solution": "Перенастроить цели в Яндекс.Метрике и Директе, использовать сквозную аналитику Calltouch + amoCRM."
+      "issue": "JSON snapshot не имеет CI-валидации",
+      "severity": "low",
+      "suggested_solution": "Добавить pre-commit hook через Python: `python -c \"import json; json.load(open('PROJECT_CONTEXT_SNAPSHOT.json'))\"`. Ломает push если JSON невалиден."
+    },
+    {
+      "issue": "v2 dashboard не имеет unit-тестов для render-функций",
+      "severity": "low",
+      "suggested_solution": "Минимальный QUnit/jest набор для renderKPI/renderDetailTable/renderSeoCharts на синтетических fixtures. Тривиально механизирует Phase 5-7 visual regressions."
     }
   ],
   "risks_and_assumptions": [
     "Предполагается, что данные Яндекс Вебмастера (CSV) корректны и полны за период 16.03–14.06.2026.",
-    "Предполагается, что оба домена используют одинаковую CMS и структуру каталога (подтверждено аудитом: 761 идентичных URL).",
-    "Риск: HTTP 500 на главной странице может привести к выпадению из индекса и потере позиций.",
-    "Риск: Отсутствие Schema.org блокирует видимость в AI-поиске (AEO/GEO), что критично для долгосрочной стратегии.",
-    "Риск: Конкурент sdbgp.ru перехватывает брендовый трафик с нулевым CTR — требуется усиление брендовых посадочных.",
-    "Предполагается, что пользователь (заказчик аудита) имеет доступ к серверу/админке для внедрения технических правок.",
-    "Предполагается, что данные amoCRM корректно отражают этапы воронки и позволяют достоверно определять ЦЛ по статусам 'Квалифицирован+'.",
-    "Риск: GitHub Pages может кешировать старые версии файлов до 5–10 минут после пуша."
+    "Предполагается, что данные amoCRM корректно отражают этап воронки и позволяют достоверно определять ЦЛ по статусам «Квалифицирован»+.",
+    "Предполагается доступ к серверу/админке sk-tu.ru для внедрения технических правок (HTTP 500, Schema.org, alt).",
+    "Риск: hot-linked SVG логотип с sk-tu.ru — если их сервер падает или блокируют external referers, логотип в v2 перестанет отображаться. <img> обычно OK (нет CORS), но проверять.",
+    "Риск: GitHub Pages CDN может кешировать старую версию до 5–10 минут после push. Hard refresh (Ctrl+Shift+R) обязателен при проверке.",
+    "Риск: theme toggle re-init всех 10 чартов при каждом клике ≈ 80ms — пользователь видит микро-fade. Не критично (toggle — редкое действие), но отметить для оптимизации.",
+    "Риск: branch divergence между репо (master vs main в CA). Если добавить новые сайты — проверять git symbolic-ref HEAD до push.",
+    "Предполагается, что пользователь продолжит работать в этом же репозитории (master branch, тот же PAT-токен)."
   ],
-  "continuation_guide": "Вот полный контекст предыдущей сессии. Изучи его очень внимательно. Продолжай работу точно с того места, где мы остановились.\n\nМы завершили обновление раздела 10 (Топ-50 ключевых слов по трафику) в index.html и маркетингового дашборда sk-tu-dashboard-deploy/index.html. Данные в таблице топ-50 — это реальные клики из Яндекс Вебмастера (сумма sk-tu.ru + msk.sk-tu.ru) за период 16 марта — 14 июня 2026 (3 месяца). Все скрипты анализа сохранены: get_top50_clicks.py (генерация JSON с кликами), generate_top50_html.py (генерация HTML-строк), find_top_clicks.py, match_clicks.py. Промежуточные данные лежат в data/top50_keywords_by_clicks.json и data/top50_keywords_html.txt.\n\nВ дашборде последнее изменение: перераспределение 1 целевого лида из SEO в кампанию Яндекс Директ 'Каркас Пл. Мастер. МСК. ОК.' (SEO target 2→1, Кабинет МСК target 0→1, кампания target 0→1, week.target остался 13). Изменения запушены в репозиторий htsgladiatis/sk-tu-dashboard (коммит 7951156) и опубликованы на https://htsgladiatis.github.io/sk-tu-dashboard/.\n\nТекущая задача: пользователь запросил создание подробной документации проекта и цифрового отпечатка (L99 Context Snapshot). Мы создали/обновили PROJECT_DOCUMENTATION.md (версия 2.2) и PROJECT_CONTEXT_SNAPSHOT.json. При продолжении: (1) проверь валидность PROJECT_CONTEXT_SNAPSHOT.json; (2) при необходимости закоммить обновлённые документы в основной репозиторий htsgladiatis/seo-audit-sk-tu-ru; (3) не перезаписывай index.html и sk-tu-dashboard-deploy/index.html без явной необходимости; (4) используй существующие скрипты как базу для новых задач. Все данные GSC находятся в data/raw/, маркетинговые данные — в marketing_report/week_2026-06-15_2026-06-21/ и 15-21/."
+  "continuation_guide": "Вот полный контекст предыдущей сессии. Изучи его очень внимательно. Продолжай работу точно с того места, где мы остановились.\n\nМы завершили Фазы 5/6/7 в маркетинговых dashboard + сопутствующих сайтах:\n\nФАЗА 5 (v2 dashboard): заменили «ТУ»-плитку + текстовый логотип на официальный SVG с sk-tu.ru (hot-linked, 24KB, hardcoded colors). Добавили violet pill «Анализ ЦА» → /sk-tu-ca-analysis/.\n\nФАЗА 6 (CA Analysis): симметричный violet pill «Дашборд» → /sk-tu-dashboard-new/. Обнаружено, что CA repo использует branch main (не master). Добавлен flex-wrap:wrap safety net на .hdr-in.\n\nФАЗА 7 (v2 dashboard bugfix): кнопка переключения темы (☀️/🌙) была определена как function toggleTheme() но НЕ была привязана к click event — добавлен addEventListener. Дополнительно по флагу code-reviewer: theme switch вызывал только initCharts (6 чартов), теперь вызывает showPeriod(currentWeek) — полный re-render всех 10 чартов включая 4 SEO Performance bars (СПБ + МСК).\n\nФАЗА 8 (документация — текущая сессия):\n- PROJECT_FULL_DOCUMENTATION.md обновлён через str_replace до v4.0: добавлены Фазы 5/6/7 (Phase 4 → теперь '5–7' варианты), live URLs таблица расширена (3→4 сайтов), branches таблица уточнена (master vs main).\n- PROJECT_CONTEXT_SNAPSHOT.json ПОЛНОСТЬЮ переписан через scripts/build_l99_snapshot.py по user-provided L99 v2.1 schema — 11 обязательных полей, strict JSON, confidence_score=96.\n\nКОММИТЫ, достойные внимания:\n- v1 dashboard (sk-tu-dashboard): HEAD=d146092, branch master — НЕ ТРОГАТЬ\n- v2 dashboard (sk-tu-dashboard-new): HEAD=8d138b1, branch master\n- CA Analysis (sk-tu-ca-analysis): HEAD=efa7bc7, branch main\n- seo-audit (этот репо): изменения в рабочей копии, не закоммичены\n\nКЛЮЧЕВЫЕ ФАЙЛЫ (НЕ ТРОГАТЬ без явного запроса):\n- sk-tu-dashboard-deploy/index.html (v1, явно защищён пользователем)\n- 29-5/design/tu-design-system.html (эталон дизайн-системы)\n\nБЕЗОПАСНЫЕ КОМАНДЫ:\n- python -c \"import json; json.load(open('PROJECT_CONTEXT_SNAPSHOT.json'))\" для валидации\n- wc -l sk-tu-dashboard-deploy-new/index.html для размера\n- git status -s\n- git push origin master (для seo-audit и v2 dashboard)\n- git push origin main (для CA Analysis и v1 dashboard!)\n\nРИСКОВЫЕ КОМАНДЫ (требуют явного запроса):\n- rm -rf, git reset --hard, любые операции с sk-tu.ru/msk.sk-tu.ru продакшном\n- изменения sk-tu-dashboard-deploy/index.html (ПОЛЬЗОВАТЕЛЬ ЗАПРЕТИЛ)\n\nOPEN TASKS (см. pending_issues с severity):\n- critical: HTTP 500 fix, Schema.org/OG/hreflang внедрение\n- critical: СПБ кампания без лидов → остановить\n- high: alt на 39 650 изображений, 301 для 7 759 404 URL\n- low: CI-валидация JSON, unit-тесты render-функций\n\nСЛЕДУЮЩИЕ ШАГИ:\n1. Валидировать PROJECT_CONTEXT_SNAPSHOT.json (уже пройдено json.dumps, но прогнать python json.load для sanity)\n2. Закоммитить 3 файла (PROJECT_FULL_DOCUMENTATION.md, PROJECT_CONTEXT_SNAPSHOT.json, scripts/build_l99_snapshot.py) в master-ветку htsgladiatis/seo-audit-sk-tu-ru\n3. git push origin master\n4. По желанию — browser-verify gh-pages live URL через браузер\n\nПРИ ПРОДОЛЖЕНИИ в новой ИИ-сессии:\n- Сначала прочитай PROJECT_FULL_DOCUMENTATION.md (полная история проекта)\n- Затем этот PROJECT_CONTEXT_SNAPSHOT.json (быстрый контекст для миграции)\n- Проверь git status во всех 4 репозиториях (sk-tu-dashboard, sk-tu-dashboard-new, sk-tu-ca-analysis, seo-audit-sk-tu-ru)\n- При создании UI — следуй TU OS v2 дизайн-токенам (--acc: #E18335, --violet: #8b5cff, .num class для чисел, .st.ok/.pend/.hold/.fail для статусов)\n- При создании новых графиков — используй showPeriod(weekId) pattern для переключения недель\n- При добавлении новых сайтов — проверь какой branch (master vs main) использует репо до первого push"
 }

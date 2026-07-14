@@ -1,0 +1,833 @@
+{
+  "direct_msk": {
+    "campaigns": {
+      "ЕПК. Каркас. РСЯ. МСК. OK.": {
+        "spend": 17919.590000000004,
+        "clicks": 385,
+        "impressions": 0
+      },
+      "Каркас Гл. Мастер. МСК. OK.": {
+        "spend": 6400.2,
+        "clicks": 44,
+        "impressions": 0
+      },
+      "Каркас кат. Мастер. МСК. OK.": {
+        "spend": 54345.29999999998,
+        "clicks": 531,
+        "impressions": 0
+      },
+      "Каркас. Поиск. МСК.": {
+        "spend": 37127.2,
+        "clicks": 258,
+        "impressions": 0
+      },
+      "Каркас. Ретаргетинг. МСК. OK. 2.": {
+        "spend": 4983.78,
+        "clicks": 60,
+        "impressions": 0
+      },
+      "Каркас. Ретаргетирнг. Фид. МСК. OK. 2.": {
+        "spend": 1223.61,
+        "clicks": 75,
+        "impressions": 0
+      }
+    },
+    "total_spend": 121999.68,
+    "total_clicks": 1353,
+    "total_impressions": 0,
+    "campaign_count": 6
+  },
+  "direct_spb": {
+    "campaigns": {
+      "Каркас. Мастер. СПБ. CPL. 3.": {
+        "spend": 7319.999999999998,
+        "clicks": 248,
+        "impressions": 0
+      },
+      "Каркас. Мастер. СПБ. OK. gl.": {
+        "spend": 72433.4000000001,
+        "clicks": 7850,
+        "impressions": 0
+      },
+      "Каркас. Поиск. СПБ. OK.": {
+        "spend": 2114.56,
+        "clicks": 17,
+        "impressions": 0
+      },
+      "Каркас. РСЯ. СПБ. OK. 06-26.": {
+        "spend": 3388.85,
+        "clicks": 102,
+        "impressions": 0
+      },
+      "Копия Каркас. Ретаргетинг. ФИД. СПБ. OK. 4.": {
+        "spend": 12738.019999999997,
+        "clicks": 459,
+        "impressions": 0
+      }
+    },
+    "total_spend": 97994.83,
+    "total_clicks": 8676,
+    "campaign_count": 5
+  },
+  "crm": {
+    "total": 83,
+    "target_leads": 20,
+    "status_counts": {
+      "Взято в работу": 13,
+      "Закрыто и не реализовано": 50,
+      "Встреча назначена": 1,
+      "КП направлено": 4,
+      "Встреча проведена": 6,
+      "Квалифицирован": 5,
+      "Дожим": 2,
+      "Передан на расчет": 1,
+      "ОС по КП получено": 1
+    },
+    "target_details": [
+      {
+        "source": "Вх. звонок",
+        "title": "Сергей, СНТ Красногорское",
+        "status": "Встреча назначена",
+        "date": "09.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Вх. звонок",
+        "title": "Александр ИП г Клин дп Лесная опушка ипотека",
+        "status": "КП направлено",
+        "date": "11.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Вх. звонок",
+        "title": "Юлия, Коробицыно",
+        "status": "Встреча проведена",
+        "date": "10.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Вх. звонок",
+        "title": "Маргарита Мытищи свой проект",
+        "status": "Квалифицирован",
+        "date": "06.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Выставочный дом",
+        "title": "Дмитрий след год",
+        "status": "Встреча проведена",
+        "date": "12.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Выставочный дом",
+        "title": "Екатерина ипотека",
+        "status": "Встреча проведена",
+        "date": "12.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Выставочный дом",
+        "title": "Андрей, за Рощино (СНТ)",
+        "status": "Квалифицирован",
+        "date": "12.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Выставочный дом",
+        "title": "Александр и Диана, стройка след год",
+        "status": "Дожим",
+        "date": "11.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Выставочный дом",
+        "title": "Иван, без участка",
+        "status": "Дожим",
+        "date": "11.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Выставочный дом",
+        "title": "Илья и Алена, Аннолово",
+        "status": "Квалифицирован",
+        "date": "11.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Выставочный дом",
+        "title": "Лидия и Дмитрий, Кобралово",
+        "status": "Квалифицирован",
+        "date": "11.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Сайт https://sk-tu.ru/, Выставочный",
+        "title": "Игорь и Анастасия ДК-207 ипотека",
+        "status": "Квалифицирован",
+        "date": "11.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Инстаграм",
+        "title": "Андрей и Алина Домодедово",
+        "status": "КП направлено",
+        "date": "10.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Вх. звонок",
+        "title": "Семен",
+        "status": "Передан на расчет",
+        "date": "10.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Выставочный дом",
+        "title": "Кристина, нет участка",
+        "status": "Встреча проведена",
+        "date": "09.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Выставочный дом",
+        "title": "Егор и Мария, Красноозерное",
+        "status": "Встреча проведена",
+        "date": "09.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Вх. звонок",
+        "title": "Ксения Подольск дер. покров ДК-78 ипотека",
+        "status": "КП направлено",
+        "date": "09.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Сайт https://sk-tu.ru/",
+        "title": "Мирослав, СНТ Астра",
+        "status": "КП направлено",
+        "date": "07.07.20",
+        "tag": "WZ (79052898603), целевой"
+      },
+      {
+        "source": "Вх. звонок",
+        "title": "Никита, Сосновый бор",
+        "status": "ОС по КП получено",
+        "date": "07.07.20",
+        "tag": "целевой"
+      },
+      {
+        "source": "Сайт https://sk-tu.ru/",
+        "title": "Андрей, Прилесный 2.0",
+        "status": "Встреча проведена",
+        "date": "07.07.20",
+        "tag": "WZ (79052898603), целевой"
+      }
+    ]
+  },
+  "webmaster": {
+    "msk_pages": {
+      "total_impressions": 48507,
+      "total_clicks": 939,
+      "ctr": 1.94,
+      "top": [
+        {
+          "name": "/articles/stroitelstvo/pravila-razmeshcheniya-stroeniy-na-zemelnom-uchastke-v-2026-polnoe-rukovodstvo-dlya-izhs-i-snt/",
+          "impressions": 9294,
+          "clicks": 498,
+          "ctr": 5.358295674628793,
+          "position": 7.021088874542715
+        },
+        {
+          "name": "/",
+          "impressions": 4179,
+          "clicks": 155,
+          "ctr": 3.7090212969609953,
+          "position": 13.478822684852835
+        },
+        {
+          "name": "/catalog/karkasnye-doma/odnoetazhnye/",
+          "impressions": 16708,
+          "clicks": 78,
+          "ctr": 0.46684223126645913,
+          "position": 8.519990423749102
+        },
+        {
+          "name": "/catalog/karkasnye-doma/barnkhaus/",
+          "impressions": 902,
+          "clicks": 34,
+          "ctr": 3.7694013303769403,
+          "position": 11.168514412416851
+        },
+        {
+          "name": "/catalog/karkasnye-doma/",
+          "impressions": 4128,
+          "clicks": 22,
+          "ctr": 0.5329457364341085,
+          "position": 11.308866279069768
+        },
+        {
+          "name": "/calculator/",
+          "impressions": 1312,
+          "clicks": 17,
+          "ctr": 1.295731707317073,
+          "position": 7.172256097560975
+        },
+        {
+          "name": "/katalog/karkasnyie-doma/?utm_source=yandex&utm_medium=cpc&utm_campaign=Karkas-RSYA-MSK-OK|{campaign_id}&gbid={gbid}&utm_term={PHRASE}&type={source_type}&source={source}&calltouch_tm=yd_c:{campaign_id}_gb:{gbid}_ad:{ad_id}_ph:{phrase_id}_st:{source_type}_pt:{position_type}_p:{position}_s:{source}_dt:{device_type}_reg:{region_id}_ret:{retargeting_id}_apt:{addphrasestext}",
+          "impressions": 11,
+          "clicks": 11,
+          "ctr": 100.0,
+          "position": 6.363636363636363
+        },
+        {
+          "name": "/catalog/karkasnye-doma/?utm_source=yandex&utm_medium=cpc&utm_campaign=Karkas-Poisk-MSK|{campaign_id}&gbid={gbid}&utm_term={PHRASE}&type={source_type}&source={source}&calltouch_tm=yd_c:{campaign_id}_gb:{gbid}_ad:{ad_id}_ph:{phrase_id}_st:{source_type}_pt:{position_type}_p:{position}_s:{source}_dt:{device_type}_reg:{region_id}_ret:{retargeting_id}_apt:{addphrasestext}",
+          "impressions": 10,
+          "clicks": 10,
+          "ctr": 100.0,
+          "position": 1.2
+        },
+        {
+          "name": "/catalog/karkasnye-doma/vtoroy-svet/",
+          "impressions": 444,
+          "clicks": 9,
+          "ctr": 2.027027027027027,
+          "position": 6.09009009009009
+        },
+        {
+          "name": "/catalog/karkasnye-doma/dvuhetazhnye/",
+          "impressions": 2599,
+          "clicks": 7,
+          "ctr": 0.2693343593689881,
+          "position": 7.722200846479415
+        },
+        {
+          "name": "/catalog/karkasnye-doma/100-150m2/",
+          "impressions": 2319,
+          "clicks": 7,
+          "ctr": 0.301854247520483,
+          "position": 9.264338076757223
+        },
+        {
+          "name": "/catalog/karkasnye-doma/do-100m2/",
+          "impressions": 1002,
+          "clicks": 6,
+          "ctr": 0.5988023952095809,
+          "position": 8.788423153692614
+        },
+        {
+          "name": "/mortgage/",
+          "impressions": 952,
+          "clicks": 6,
+          "ctr": 0.6302521008403361,
+          "position": 7.848739495798319
+        },
+        {
+          "name": "/katalog/karkasnyie-doma/?utm_source=yandex&utm_medium=cpc&utm_campaign=Karkas-Retargeting-MSK-OK|{campaign_id}&gbid={gbid}&utm_term={PHRASE}&type={source_type}&source={source}&calltouch_tm=yd_c:{campaign_id}_gb:{gbid}_ad:{ad_id}_ph:{phrase_id}_st:{source_type}_pt:{position_type}_p:{position}_s:{source}_dt:{device_type}_reg:{region_id}_ret:{retargeting_id}_apt:{addphrasestext}",
+          "impressions": 6,
+          "clicks": 6,
+          "ctr": 100.0,
+          "position": 6.166666666666667
+        },
+        {
+          "name": "/design/",
+          "impressions": 235,
+          "clicks": 4,
+          "ctr": 1.702127659574468,
+          "position": 9.017021276595745
+        },
+        {
+          "name": "/articles/stroitelstvo/znachenie-tochki-rosy-dlja-karkasnogo-doma/",
+          "impressions": 36,
+          "clicks": 4,
+          "ctr": 11.11111111111111,
+          "position": 7.333333333333333
+        },
+        {
+          "name": "/articles/vybiraem/raznitsa-mezhdu-mansardoy-i-cherdakom/",
+          "impressions": 3,
+          "clicks": 4,
+          "ctr": 133.33333333333331,
+          "position": 6.666666666666667
+        },
+        {
+          "name": "/articles/inzhenernye-sistemy/inzhenernye-kommunikatsii-v-chastnom-dome-vidy-osobennosti-i-optimalnye-sroki-podklyucheniya/",
+          "impressions": 193,
+          "clicks": 3,
+          "ctr": 1.5544041450777202,
+          "position": 8.642487046632125
+        },
+        {
+          "name": "/credit/",
+          "impressions": 15,
+          "clicks": 3,
+          "ctr": 20.0,
+          "position": 11.2
+        },
+        {
+          "name": "/articles/osobennosti-i-sovety/naznachenie-i-osnovnye-osobennosti-rigelej-v-karkasnom-dome/",
+          "impressions": 12,
+          "clicks": 3,
+          "ctr": 25.0,
+          "position": 5.0
+        }
+      ]
+    },
+    "msk_queries": {
+      "total_impressions": 33864,
+      "total_clicks": 354,
+      "ctr": 1.05,
+      "top": [
+        {
+          "name": "теплый угол",
+          "impressions": 268,
+          "clicks": 62,
+          "ctr": 23.134328358208954,
+          "position": 2.4440298507462686
+        },
+        {
+          "name": "каркасный дом барнхаус",
+          "impressions": 288,
+          "clicks": 20,
+          "ctr": 6.944444444444445,
+          "position": 8.340277777777779
+        },
+        {
+          "name": "каркасный одноэтажный дом",
+          "impressions": 140,
+          "clicks": 17,
+          "ctr": 12.142857142857142,
+          "position": 8.95
+        },
+        {
+          "name": "одноэтажный каркасный дом",
+          "impressions": 57,
+          "clicks": 15,
+          "ctr": 26.31578947368421,
+          "position": 10.105263157894736
+        },
+        {
+          "name": "строительство домов",
+          "impressions": 271,
+          "clicks": 12,
+          "ctr": 4.428044280442804,
+          "position": 12.287822878228782
+        },
+        {
+          "name": "проекты одноэтажных каркасных домов",
+          "impressions": 103,
+          "clicks": 10,
+          "ctr": 9.70873786407767,
+          "position": 8.864077669902912
+        },
+        {
+          "name": "нормы строительства на земельном участке от соседей 2026",
+          "impressions": 49,
+          "clicks": 7,
+          "ctr": 14.285714285714285,
+          "position": 3.204081632653061
+        },
+        {
+          "name": "строительство домов в москве и области",
+          "impressions": 21,
+          "clicks": 7,
+          "ctr": 33.33333333333333,
+          "position": 10.619047619047619
+        },
+        {
+          "name": "тёплый угол",
+          "impressions": 23,
+          "clicks": 6,
+          "ctr": 26.08695652173913,
+          "position": 2.1739130434782608
+        },
+        {
+          "name": "каркасный барнхаус под ключ",
+          "impressions": 36,
+          "clicks": 5,
+          "ctr": 13.88888888888889,
+          "position": 11.0
+        },
+        {
+          "name": "нормы расположения построек на земельном участке 2026",
+          "impressions": 33,
+          "clicks": 5,
+          "ctr": 15.151515151515152,
+          "position": 2.393939393939394
+        },
+        {
+          "name": "строительство домов московская область под ключ",
+          "impressions": 20,
+          "clicks": 5,
+          "ctr": 25.0,
+          "position": 11.25
+        },
+        {
+          "name": "нормы строительства дома на участке ижс отступы 2026",
+          "impressions": 19,
+          "clicks": 5,
+          "ctr": 26.31578947368421,
+          "position": 3.526315789473684
+        },
+        {
+          "name": "одноэтажный дом каркасный под ключ",
+          "impressions": 14,
+          "clicks": 5,
+          "ctr": 35.714285714285715,
+          "position": 10.928571428571429
+        },
+        {
+          "name": "строительство и продажа домов",
+          "impressions": 9,
+          "clicks": 5,
+          "ctr": 55.55555555555556,
+          "position": 6.444444444444445
+        },
+        {
+          "name": "дом под ключ московская область",
+          "impressions": 26,
+          "clicks": 4,
+          "ctr": 15.384615384615385,
+          "position": 11.538461538461538
+        },
+        {
+          "name": "точка росы в каркасном доме",
+          "impressions": 32,
+          "clicks": 4,
+          "ctr": 12.5,
+          "position": 7.0625
+        },
+        {
+          "name": "нормы строений на участке от забора 2026",
+          "impressions": 17,
+          "clicks": 4,
+          "ctr": 23.52941176470588,
+          "position": 3.411764705882353
+        },
+        {
+          "name": "одноэтажный каркасный дом под ключ",
+          "impressions": 7,
+          "clicks": 4,
+          "ctr": 57.14285714285714,
+          "position": 11.571428571428571
+        },
+        {
+          "name": "барнхаус проекты под ключ",
+          "impressions": 5,
+          "clicks": 4,
+          "ctr": 80.0,
+          "position": 9.8
+        }
+      ]
+    },
+    "spb_queries": {
+      "total_impressions": 33937,
+      "total_clicks": 1472,
+      "ctr": 4.34,
+      "top": [
+        {
+          "name": "купить каркасный дом в спб",
+          "impressions": 208,
+          "clicks": 38,
+          "ctr": 18.269230769230766,
+          "position": 9.307692307692308
+        },
+        {
+          "name": "каркасный дом под ключ в ленинградской области",
+          "impressions": 236,
+          "clicks": 28,
+          "ctr": 11.864406779661017,
+          "position": 7.22457627118644
+        },
+        {
+          "name": "каркасные дома под ключ",
+          "impressions": 355,
+          "clicks": 26,
+          "ctr": 7.323943661971831,
+          "position": 7.056338028169014
+        },
+        {
+          "name": "стоимость каркасного дома",
+          "impressions": 99,
+          "clicks": 26,
+          "ctr": 26.262626262626267,
+          "position": 6.373737373737374
+        },
+        {
+          "name": "каркасные дома под ключ в спб",
+          "impressions": 649,
+          "clicks": 25,
+          "ctr": 3.8520801232665636,
+          "position": 7.5793528505392915
+        },
+        {
+          "name": "каркасные дома спб",
+          "impressions": 418,
+          "clicks": 25,
+          "ctr": 5.980861244019139,
+          "position": 7.179425837320574
+        },
+        {
+          "name": "строительство каркасных домов под ключ",
+          "impressions": 177,
+          "clicks": 25,
+          "ctr": 14.124293785310735,
+          "position": 5.15819209039548
+        },
+        {
+          "name": "построить каркасный дом в спб",
+          "impressions": 80,
+          "clicks": 25,
+          "ctr": 31.25,
+          "position": 7.075
+        },
+        {
+          "name": "строительство каркасных домов под ключ в спб",
+          "impressions": 57,
+          "clicks": 20,
+          "ctr": 35.08771929824561,
+          "position": 3.754385964912281
+        },
+        {
+          "name": "каркасный дом с террасой",
+          "impressions": 57,
+          "clicks": 20,
+          "ctr": 35.08771929824561,
+          "position": 6.2105263157894735
+        },
+        {
+          "name": "строительство каркасных домов под ключ цена",
+          "impressions": 78,
+          "clicks": 18,
+          "ctr": 23.076923076923077,
+          "position": 2.269230769230769
+        },
+        {
+          "name": "проекты двухэтажных каркасных домов",
+          "impressions": 24,
+          "clicks": 18,
+          "ctr": 75.0,
+          "position": 2.2916666666666665
+        },
+        {
+          "name": "каркасный дом под ключ цена",
+          "impressions": 85,
+          "clicks": 17,
+          "ctr": 20.0,
+          "position": 5.470588235294118
+        },
+        {
+          "name": "каркасные дома под ключ проекты",
+          "impressions": 54,
+          "clicks": 17,
+          "ctr": 31.48148148148148,
+          "position": 5.666666666666667
+        },
+        {
+          "name": "одноэтажные каркасные дома под ключ",
+          "impressions": 51,
+          "clicks": 17,
+          "ctr": 33.33333333333333,
+          "position": 5.509803921568627
+        },
+        {
+          "name": "проекты каркасных одноэтажных домов для круглогодичного проживания",
+          "impressions": 24,
+          "clicks": 17,
+          "ctr": 70.83333333333334,
+          "position": 2.75
+        },
+        {
+          "name": "каркасные дома",
+          "impressions": 652,
+          "clicks": 16,
+          "ctr": 2.4539877300613497,
+          "position": 8.191717791411042
+        },
+        {
+          "name": "каркасный дом под ключ",
+          "impressions": 642,
+          "clicks": 16,
+          "ctr": 2.4922118380062304,
+          "position": 7.686915887850467
+        },
+        {
+          "name": "каркасный дом 2 этажа",
+          "impressions": 78,
+          "clicks": 16,
+          "ctr": 20.51282051282051,
+          "position": 7.012820512820513
+        },
+        {
+          "name": "стоимость строительства каркасного дома",
+          "impressions": 84,
+          "clicks": 16,
+          "ctr": 19.047619047619047,
+          "position": 8.30952380952381
+        }
+      ]
+    },
+    "spb_pages": {
+      "total_impressions": 48514,
+      "total_clicks": 2039,
+      "ctr": 4.2,
+      "top": [
+        {
+          "name": "/catalog/karkasnye-doma/",
+          "impressions": 18394,
+          "clicks": 654,
+          "ctr": 3.5555072306186797,
+          "position": 8.418179841252583
+        },
+        {
+          "name": "/catalog/karkasnye-doma/odnoetazhnye/",
+          "impressions": 2290,
+          "clicks": 184,
+          "ctr": 8.034934497816595,
+          "position": 7.961572052401746
+        },
+        {
+          "name": "/catalog/karkasnye-doma/100-150m2/",
+          "impressions": 1698,
+          "clicks": 148,
+          "ctr": 8.716136631330977,
+          "position": 7.202002355712603
+        },
+        {
+          "name": "/catalog/karkasnye-doma/dvuhetazhnye/",
+          "impressions": 1092,
+          "clicks": 96,
+          "ctr": 8.791208791208792,
+          "position": 7.5503663003663
+        },
+        {
+          "name": "/calculator/",
+          "impressions": 762,
+          "clicks": 75,
+          "ctr": 9.84251968503937,
+          "position": 9.4750656167979
+        },
+        {
+          "name": "/",
+          "impressions": 2574,
+          "clicks": 62,
+          "ctr": 2.4087024087024087,
+          "position": 11.552447552447552
+        },
+        {
+          "name": "/catalog/karkasnye-doma/s-terrasoj/",
+          "impressions": 474,
+          "clicks": 61,
+          "ctr": 12.869198312236287,
+          "position": 7.590717299578059
+        },
+        {
+          "name": "/catalog/",
+          "impressions": 732,
+          "clicks": 56,
+          "ctr": 7.650273224043716,
+          "position": 5.788251366120218
+        },
+        {
+          "name": "/articles/fundamenty/ustroystvo-uteplennoy-otmostki-polnoe-rukovodstvo-po-montazhu-svoimi-rukami/",
+          "impressions": 2101,
+          "clicks": 49,
+          "ctr": 2.3322227510709186,
+          "position": 8.46930033317468
+        },
+        {
+          "name": "/catalog/karkasnye-doma/s-mansardoy/",
+          "impressions": 529,
+          "clicks": 47,
+          "ctr": 8.88468809073724,
+          "position": 8.073724007561436
+        },
+        {
+          "name": "/articles/stroitelstvo/pravila-razmeshcheniya-stroeniy-na-zemelnom-uchastke-v-2026-polnoe-rukovodstvo-dlya-izhs-i-snt/",
+          "impressions": 624,
+          "clicks": 37,
+          "ctr": 5.929487179487179,
+          "position": 6.9951923076923075
+        },
+        {
+          "name": "?utm_source=yandex&utm_medium=cpc&utm_campaign=Karkas-Master-SPB-OK-gl|{campaign_id}&gbid={gbid}&utm_term={PHRASE}&type={source_type}&source={source}&calltouch_tm=yd_c:{campaign_id}_gb:{gbid}_ad:{ad_id}_ph:{phrase_id}_st:{source_type}_pt:{position_type}_p:{position}_s:{source}_dt:{device_type}_reg:{region_id}_ret:{retargeting_id}_apt:{addphrasestext}",
+          "impressions": 28,
+          "clicks": 28,
+          "ctr": 100.0,
+          "position": 6.357142857142857
+        },
+        {
+          "name": "/mortgage/",
+          "impressions": 483,
+          "clicks": 26,
+          "ctr": 5.383022774327122,
+          "position": 10.428571428571429
+        },
+        {
+          "name": "/catalog/karkasnye-doma/top/",
+          "impressions": 52,
+          "clicks": 26,
+          "ctr": 50.0,
+          "position": 2.923076923076923
+        },
+        {
+          "name": "/designer/constructor/",
+          "impressions": 77,
+          "clicks": 20,
+          "ctr": 25.97402597402597,
+          "position": 7.701298701298701
+        },
+        {
+          "name": "/articles/inzhenernye-sistemy/inzhenernye-kommunikatsii-v-chastnom-dome-vidy-osobennosti-i-optimalnye-sroki-podklyucheniya/",
+          "impressions": 318,
+          "clicks": 18,
+          "ctr": 5.660377358490567,
+          "position": 7.50314465408805
+        },
+        {
+          "name": "/designer/",
+          "impressions": 184,
+          "clicks": 18,
+          "ctr": 9.782608695652174,
+          "position": 9.429347826086957
+        },
+        {
+          "name": "/catalog/karkasnye-doma/dk-200/",
+          "impressions": 29,
+          "clicks": 18,
+          "ctr": 62.06896551724138,
+          "position": 2.0344827586206895
+        },
+        {
+          "name": "/catalog/karkasnye-doma/barnkhaus/",
+          "impressions": 2830,
+          "clicks": 17,
+          "ctr": 0.6007067137809188,
+          "position": 9.479858657243817
+        },
+        {
+          "name": "/catalog/karkasnye-doma/sovremennyy/",
+          "impressions": 41,
+          "clicks": 17,
+          "ctr": 41.46341463414634,
+          "position": 2.2195121951219514
+        }
+      ]
+    }
+  },
+  "summary": {
+    "period": "06.07-12.07.2026",
+    "week": 4,
+    "direct_total_spend": 219994.51,
+    "direct_total_clicks": 10029,
+    "direct_msk_spend": 121999.68,
+    "direct_msk_clicks": 1353,
+    "direct_spb_spend": 97994.83,
+    "direct_spb_clicks": 8676,
+    "webmaster_total_impressions": 97021,
+    "webmaster_total_clicks": 2978,
+    "crm_total": 83,
+    "crm_target_leads": 20
+  }
+}

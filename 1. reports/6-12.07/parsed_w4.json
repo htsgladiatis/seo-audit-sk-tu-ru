@@ -34,7 +34,7 @@
     },
     "total_spend": 121999.68,
     "total_clicks": 1353,
-    "total_impressions": 0,
+    "total_impressions": 48507,
     "campaign_count": 6
   },
   "direct_spb": {
@@ -67,7 +67,8 @@
     },
     "total_spend": 97994.83,
     "total_clicks": 8676,
-    "campaign_count": 5
+    "campaign_count": 5,
+    "total_impressions": 48514
   },
   "crm": {
     "total": 83,

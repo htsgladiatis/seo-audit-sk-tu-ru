@@ -52,44 +52,62 @@ t_spb_s = sum(d['spend'] for d in spb.values())
 t_spb_c = sum(d['clicks'] for d in spb.values())
 OUT['direct_spb'] = {'campaigns': {k: v for k, v in sorted(spb.items())}, 'total_spend': round(t_spb_s,2), 'total_clicks': t_spb_c, 'campaign_count': len(spb)}
 
-# ── CRM ──
+# ── CRM (new format: plain JSON, fields: etap, nazvanie_sdelki, telefon, data, otkuda_uznali, target, utm_campaign) ──
 with open(f'{BASE}/CRM 6-12.txt', 'r', encoding='utf-8') as f:
-    text = f.read()
-# Parse ALL JSON blocks (CRM export has multiple arrays)
-crm_all = []
-for m in re.finditer(r'```(?:json)?\s*(\[.*?\])\s*```', text, re.DOTALL):
-    try:
-        block = json.loads(m.group(1))
-        crm_all.extend(block)
-    except:
-        pass
-# Also try raw arrays outside code blocks
-for m in re.finditer(r'(?<![`\w])\[\s*\{[^]]+\}\s*\]', text, re.DOTALL):
-    try:
-        block = json.loads(m.group(0))
-        crm_all.extend(block)
-    except:
-        pass
-# Dedupe by title+phone+status (some deals appear in multiple exports)
+    crm_raw = json.load(f)
+
+# Dedupe by nazvanie_sdelki + telefon + etap
 seen = set()
 crm_data = []
-for r in crm_all:
-    key = (r.get('title',''), r.get('phone',''), r.get('status',''))
+for r in crm_raw:
+    key = (r.get('nazvanie_sdelki',''), r.get('telefon',''), r.get('etap',''))
     if key not in seen:
         seen.add(key)
         crm_data.append(r)
 
-TARGET = ['Квалифицирован','КП направлено','Встреча проведена','Дожим','Договор направлен','Передан на расчет','Встреча назначена','ОС по КП получено','Встреча подтверждена','Смета рассчитана','ДОГОВОР ПОДПИСАН']
-
-statuses = defaultdict(int); target_ct = 0; target_list = []
+# Count target leads: use "target: true" flag (from CRM export)
+target_ct = sum(1 for r in crm_data if r.get('target') == True)
+target_list = []
+statuses = defaultdict(int)
 for r in crm_data:
-    st = r.get('status','').strip()
+    st = r.get('etap','').strip()
     statuses[st] += 1
-    if any(t.lower() in st.lower() for t in TARGET):
-        target_ct += 1
-        target_list.append({'source': r.get('source',''), 'title': r.get('title',''), 'status': st, 'date': r.get('date',''), 'tag': r.get('tag','')})
+    if r.get('target') == True:
+        target_list.append({
+            'source': r.get('otkuda_uznali',''),
+            'title': r.get('nazvanie_sdelki',''),
+            'status': st,
+            'date': r.get('data',''),
+            'utm_campaign': r.get('utm_campaign',''),
+            'utm_source': r.get('utm_source','')
+        })
 
-OUT['crm'] = {'total': len(crm_data), 'target_leads': target_ct, 'status_counts': dict(statuses), 'target_details': target_list}
+# Group target leads by utm_campaign for dashboard mapping
+campaign_targets = defaultdict(int)
+for r in crm_data:
+    if r.get('target') == True:
+        camp = r.get('utm_campaign','')
+        if camp and camp != '<не указано>' and camp != '<не заполнено>' and camp != '<не указано>':
+            campaign_targets[camp] += 1
+
+# Also count by source (otkuda_uznali)
+source_targets = defaultdict(int)
+source_total = defaultdict(int)
+for r in crm_data:
+    src = r.get('otkuda_uznali','') or 'Без источника'
+    source_total[src] += 1
+    if r.get('target') == True:
+        source_targets[src] += 1
+
+OUT['crm'] = {
+    'total': len(crm_data),
+    'target_leads': target_ct,
+    'status_counts': dict(statuses),
+    'target_details': target_list,
+    'campaign_targets': dict(campaign_targets),
+    'source_targets': dict(source_targets),
+    'source_total': dict(source_total)
+}
 
 # ── WEBMASTER ──
 WM = {
